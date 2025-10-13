@@ -2,7 +2,6 @@ import dynamic from 'next/dynamic';
 import ConverterClient from '../ConverterClient';
 import { HeroSection, Features, HowTo, Tips } from '../components/home';
 import { WebApplicationSchema, OrganizationSchema, BreadcrumbSchema } from '../components/StructuredData';
-import type { Locale } from '@/lib/i18n/types';
 import { SUPPORTED_LOCALES } from '@/lib/i18n/types';
 import type { Metadata } from 'next';
 

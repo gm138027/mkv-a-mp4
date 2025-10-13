@@ -16,13 +16,13 @@ export const Footer = () => {
 
         {/* 链接 */}
         <div className="app-footer__links">
-          <a href="/privacy" className="app-footer__link">
+          <Link href="/privacy" className="app-footer__link">
             {t('footer.privacyPolicy')}
-          </a>
+          </Link>
           <span className="app-footer__separator">•</span>
-          <a href="/terms" className="app-footer__link">
+          <Link href="/terms" className="app-footer__link">
             {t('footer.termsOfService')}
-          </a>
+          </Link>
         </div>
 
         {/* 技术信息 */}

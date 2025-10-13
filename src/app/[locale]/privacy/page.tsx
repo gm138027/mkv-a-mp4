@@ -1,6 +1,5 @@
 import { PrivacyPolicy } from '@/app/components/legal/PrivacyPolicy';
 import type { Metadata } from 'next';
-import type { Locale } from '@/lib/i18n/types';
 
 // 动态生成每个语言的 metadata
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {

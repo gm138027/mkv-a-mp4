@@ -29,11 +29,11 @@ export default function OfflinePage() {
         </div>
 
         <h1 className="offline-page__title">
-          You're Offline
+          You&apos;re Offline
         </h1>
 
         <p className="offline-page__description">
-          It looks like you've lost your internet connection. 
+          It looks like you&apos;ve lost your internet connection. 
           This page requires an active connection to work properly.
         </p>
 
@@ -54,7 +54,7 @@ export default function OfflinePage() {
         </div>
 
         <div className="offline-page__tips">
-          <h2 className="offline-page__tips-title">While you're offline:</h2>
+          <h2 className="offline-page__tips-title">While you&apos;re offline:</h2>
           <ul className="offline-page__tips-list">
             <li>Check your internet connection</li>
             <li>Try disabling airplane mode</li>
