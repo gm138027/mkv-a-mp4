@@ -29,8 +29,6 @@ const nextConfig: NextConfig = {
   // ✅ 实验性功能和优化
   experimental: {
     optimizePackageImports: ['lucide-react'],  // 优化图标库导入
-    // 使用更快的SWC minifier
-    swcMinify: true,
   },
 
   // ✅ 生产构建优化

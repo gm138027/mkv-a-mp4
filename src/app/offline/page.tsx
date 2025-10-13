@@ -1,11 +1,6 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Offline - MKV to MP4 Converter',
-  description: 'You are currently offline',
-  robots: 'noindex, nofollow',
-};
+import Link from 'next/link';
 
 export default function OfflinePage() {
   return (
