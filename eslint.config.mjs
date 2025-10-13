@@ -22,6 +22,7 @@ const eslintConfig = [
       'react-hooks/exhaustive-deps': 'warn',
       '@next/next/google-font-preconnect': 'warn',
       'react/no-unescaped-entities': 'off', // 已手动修复
+      'react/jsx-no-undef': 'error', // 保持为错误，确保导入正确
     },
   },
 ];
