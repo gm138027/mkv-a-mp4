@@ -8,6 +8,7 @@ import '@/lib/init';
 // i18n Provider（根：默认西语）
 import { LocaleProvider, DEFAULT_LOCALE } from '@/lib/i18n';
 import { ClientLayout } from '@/app/components/ClientLayout';
+import { GoogleAnalytics } from '@/app/components/GoogleAnalytics';
 
 // 字体优化：添加 display swap 避免 FOIT
 const geistSans = Geist({
@@ -92,6 +93,8 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
+        {/* Google Analytics */}
+        <GoogleAnalytics />
         {/* 资源提示 - 优化字体和关键资源加载 */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

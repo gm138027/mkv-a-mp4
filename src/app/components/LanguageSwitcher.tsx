@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useLocale, useTranslation, SUPPORTED_LOCALES, type Locale } from '@/lib/i18n';
 import { useRouter } from 'next/navigation';
+import { useAnalytics } from '@/app/hooks/useAnalytics';
 
 /**
  * 语言旗帜 Emoji 映射
@@ -18,6 +19,7 @@ const LANGUAGE_FLAGS: Record<Locale, string> = {
 export const LanguageSwitcher = () => {
   const { locale, changeLocale, isLoading } = useLocale();
   const { t } = useTranslation();
+  const { trackLanguageChange } = useAnalytics();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
@@ -44,6 +46,9 @@ export const LanguageSwitcher = () => {
 
   // 处理语言切换
   const handleLanguageChange = (newLocale: Locale) => {
+    // 追踪语言切换事件
+    trackLanguageChange(locale, newLocale);
+    
     changeLocale(newLocale);
     
     // 获取当前路径

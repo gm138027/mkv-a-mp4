@@ -10,11 +10,19 @@ import { useState, useCallback, useEffect } from 'react';
 import { convertMKVtoMP4, preloadFFmpeg, isFFmpegSupported } from './index';
 import type { VideoTask, ConversionConfig } from './types';
 import { DEFAULT_CONFIG } from './types';
+import { useAnalytics } from '@/app/hooks/useAnalytics';
 
 export function useFFmpeg() {
   const [tasks, setTasks] = useState<Map<string, VideoTask>>(new Map());
   const [isSupported, setIsSupported] = useState(true);
   const [ffmpegLoaded, setFfmpegLoaded] = useState(false);
+  const { 
+    trackConversionStart, 
+    trackConversionComplete, 
+    trackConversionError,
+    trackFileDownload, 
+    trackBatchDownload 
+  } = useAnalytics();
 
   // 检查浏览器支持
   useEffect(() => {
@@ -63,10 +71,14 @@ export function useFFmpeg() {
     const task = tasks.get(taskId);
     if (!task) return;
 
+    // 追踪转换开始
+    trackConversionStart(task.file.name, task.file.size);
+
     // 更新状态为 loading
     updateTask(taskId, { status: 'loading', logs: [...task.logs, '🔄 正在加载转换引擎...'] });
 
     const finalConfig = { ...DEFAULT_CONFIG, ...config };
+    const startTime = Date.now();
 
     try {
       const outputBlob = await convertMKVtoMP4({
@@ -97,6 +109,9 @@ export function useFFmpeg() {
       });
 
       // 转换成功
+      const duration = Date.now() - startTime;
+      trackConversionComplete(task.file.name, duration);
+      
       updateTask(taskId, {
         status: 'completed',
         progress: 100,
@@ -106,13 +121,17 @@ export function useFFmpeg() {
       });
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : String(error);
+      
+      // 追踪转换错误
+      trackConversionError(task.file.name, errorMessage);
+      
       updateTask(taskId, {
         status: 'failed',
         error: errorMessage,
         logs: [...(tasks.get(taskId)?.logs || []), `❌ 错误: ${errorMessage}`],
       });
     }
-  }, [tasks]);
+  }, [tasks, trackConversionStart, trackConversionComplete, trackConversionError]);
 
   /**
    * 更新任务
@@ -137,13 +156,17 @@ export function useFFmpeg() {
 
     const url = URL.createObjectURL(task.outputBlob);
     const a = document.createElement('a');
+    const fileName = task.file.name.replace(/\.mkv$/i, '.mp4');
     a.href = url;
-    a.download = task.file.name.replace(/\.mkv$/i, '.mp4');
+    a.download = fileName;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-  }, [tasks]);
+    
+    // 追踪下载事件
+    trackFileDownload(fileName, task.outputBlob.size);
+  }, [tasks, trackFileDownload]);
 
   /**
    * 删除任务
@@ -174,12 +197,24 @@ export function useFFmpeg() {
    * 下载所有完成的任务
    */
   const downloadAll = useCallback(() => {
-    tasks.forEach((task, taskId) => {
-      if (task.status === 'completed' && task.outputBlob) {
-        downloadTask(taskId);
-      }
+    const completedTasks = Array.from(tasks.entries()).filter(
+      ([_, task]) => task.status === 'completed' && task.outputBlob
+    );
+    
+    if (completedTasks.length === 0) return;
+    
+    // 追踪批量下载事件
+    const totalSize = completedTasks.reduce(
+      (sum, [_, task]) => sum + (task.outputBlob?.size || 0), 
+      0
+    );
+    trackBatchDownload(completedTasks.length, totalSize);
+    
+    // 执行下载
+    completedTasks.forEach(([taskId]) => {
+      downloadTask(taskId);
     });
-  }, [tasks, downloadTask]);
+  }, [tasks, downloadTask, trackBatchDownload]);
 
   /**
    * 清空所有任务

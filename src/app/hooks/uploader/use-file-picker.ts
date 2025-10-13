@@ -9,9 +9,11 @@ import { createVideoItem } from '@/app/lib/video-adapter';
 import { generateId } from '@/app/lib/id';
 import { validateFiles } from '@/app/lib/file-validator';
 import { useTranslation } from '@/lib/i18n';
+import { useAnalytics } from '@/app/hooks/useAnalytics';
 
 export const useFilePicker = (dispatch: (action: StageAction) => void) => {
   const { t } = useTranslation();
+  const { trackFileUpload, trackBatchFileUpload } = useAnalytics();
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const setInputRef = useCallback((node: HTMLInputElement | null) => {
@@ -53,12 +55,23 @@ export const useFilePicker = (dispatch: (action: StageAction) => void) => {
 
       // 创建视频项并添加到状态
       const fileMap = new Map<string, File>();
+      let totalSize = 0;
+      
       files.forEach((file) => {
         const videoId = generateId();
         const video = createVideoItem(file, videoId);
         dispatch({ type: 'ADD_VIDEO', video });
         fileMap.set(videoId, file);
+        totalSize += file.size;
+        
+        // 追踪单个文件上传
+        trackFileUpload(file.name, file.size, file.type);
       });
+
+      // 追踪批量上传（如果上传了多个文件）
+      if (files.length > 1) {
+        trackBatchFileUpload(files.length, totalSize);
+      }
 
       dispatch({ type: 'SET_STAGE', stage: 'list' });
 
@@ -67,7 +80,7 @@ export const useFilePicker = (dispatch: (action: StageAction) => void) => {
 
       return fileMap;
     },
-    [dispatch]
+    [dispatch, trackFileUpload, trackBatchFileUpload, t]
   );
 
   return {
