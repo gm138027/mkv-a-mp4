@@ -1,0 +1,28 @@
+{
+  "name": "MKV to MP4 Converter",
+  "short_name": "MKV2MP4",
+  "description": "Free online MKV to MP4 converter. Convert videos in your browser without uploading.",
+  "icons": [
+    {
+      "src": "/logo/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#10b981",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/",
+  "orientation": "any",
+  "categories": ["utilities", "productivity"],
+  "lang": "es",
+  "dir": "ltr"
+}

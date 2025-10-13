@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "title": "Politique de Confidentialité - Convertisseur MKV vers MP4",
+    "description": "Politique de confidentialité du convertisseur MKV vers MP4. Informations sur la façon dont nous traitons et protégeons vos données."
+  },
+  "header": {
+    "title": "Politique de Confidentialité",
+    "lastUpdated": "Dernière mise à jour : 13 octobre 2025"
+  },
+  "intro": {
+    "text": "Chez MKV vers MP4, nous respectons votre vie privée. Cette politique explique comment fonctionne notre outil de conversion vidéo et quelles données nous traitons."
+  },
+  "sections": [
+    {
+      "title": "1. Traitement 100% dans le Navigateur",
+      "content": "Notre outil fonctionne entièrement dans votre navigateur en utilisant la technologie WebAssembly. Vos fichiers vidéo ne sont **jamais téléchargés sur nos serveurs**. Tout le traitement de conversion se fait localement sur votre appareil."
+    },
+    {
+      "title": "2. Données que nous NE collectons PAS",
+      "content": "Nous ne collectons, ne stockons ni n'avons accès à :\n\n• Vos fichiers vidéo originaux\n• Vos fichiers vidéo convertis\n• Les noms de fichiers\n• Le contenu des vidéos\n• Les informations personnellement identifiables\n\nTous vos fichiers restent sur votre appareil en permanence."
+    },
+    {
+      "title": "3. Utilisation de Google Analytics",
+      "content": "Nous utilisons Google Analytics pour comprendre comment les utilisateurs interagissent avec notre outil. Les données collectées sont anonymes et incluent :\n\n• Pages visitées\n• Temps passé sur le site\n• Type de navigateur et système d'exploitation\n• Pays et ville (approximatifs)\n• Langue du navigateur\n\nCes données nous aident à améliorer l'expérience utilisateur. Vous pouvez désactiver Google Analytics en utilisant des extensions de navigateur comme \"uBlock Origin\" ou en configurant votre navigateur pour bloquer les cookies tiers."
+    },
+    {
+      "title": "4. Cookies et Stockage Local",
+      "content": "Nous utilisons le stockage local du navigateur (localStorage) uniquement pour :\n\n• Mémoriser votre préférence de langue\n• Améliorer votre expérience utilisateur\n\nNous n'utilisons pas de cookies pour le suivi ou la publicité. Vous pouvez effacer le stockage local à tout moment depuis les paramètres de votre navigateur."
+    },
+    {
+      "title": "5. Liens vers des Tiers",
+      "content": "Notre site peut contenir des liens vers des sites web tiers. Nous ne sommes pas responsables des pratiques de confidentialité de ces sites. Nous vous recommandons de lire leurs politiques de confidentialité avant de partager des informations personnelles."
+    },
+    {
+      "title": "6. Sécurité des Données",
+      "content": "Étant donné que vos informations restent sur votre appareil et ne sont pas transmises à nos serveurs, vous gardez le contrôle total sur la sécurité de vos données. Nous recommandons :\n\n• Utiliser la dernière version de votre navigateur\n• Maintenir votre système d'exploitation à jour\n• Utiliser des connexions sécurisées (HTTPS)"
+    },
+    {
+      "title": "7. Utilisation par les Mineurs",
+      "content": "Notre service est disponible pour les utilisateurs de tous âges. Étant donné que nous ne collectons pas d'informations personnelles, il n'y a pas de risques particuliers pour la vie privée des mineurs. Les parents et tuteurs doivent superviser l'utilisation d'Internet par les mineurs."
+    },
+    {
+      "title": "8. Modifications de cette Politique",
+      "content": "Nous pouvons mettre à jour cette politique de confidentialité occasionnellement. La date de \"Dernière mise à jour\" sera modifiée en conséquence. Nous vous recommandons de consulter cette page périodiquement pour rester informé de tout changement."
+    },
+    {
+      "title": "9. Vos Droits",
+      "content": "Comme nous ne collectons ni ne stockons de données personnelles, il n'y a pas de données à demander, modifier ou supprimer. Vous avez un contrôle total sur toutes les données stockées localement dans votre navigateur, que vous pouvez supprimer à tout moment."
+    },
+    {
+      "title": "10. Contact",
+      "content": "Si vous avez des questions concernant cette politique de confidentialité, vous pouvez nous contacter à :\n\nEmail : mkvamp4@proton.me\n\nNous répondrons à vos demandes dans les plus brefs délais."
+    }
+  ],
+  "footer": {
+    "text": "Cette politique de confidentialité est effective à partir du 13 octobre 2025."
+  }
+}

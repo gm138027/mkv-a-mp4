@@ -1,0 +1,66 @@
+{
+  "meta": {
+    "title": "Nutzungsbedingungen - MKV zu MP4 Konverter",
+    "description": "Nutzungsbedingungen für den MKV zu MP4 Konverter. Informationen über Ihre Rechte und Pflichten."
+  },
+  "header": {
+    "title": "Nutzungsbedingungen",
+    "lastUpdated": "Letzte Aktualisierung: 13. Oktober 2025"
+  },
+  "intro": {
+    "text": "Willkommen bei MKV zu MP4. Durch die Nutzung unseres Video-Konvertierungsdienstes akzeptieren Sie diese Nutzungsbedingungen. Bitte lesen Sie sie sorgfältig."
+  },
+  "sections": [
+    {
+      "title": "1. Servicebeschreibung",
+      "content": "MKV zu MP4 ist ein kostenloses Video-Konvertierungstool, das vollständig in Ihrem Browser funktioniert. Wir verwenden WebAssembly-Technologie, um MKV-Dateien in das MP4-Format zu konvertieren, ohne dass Sie Ihre Dateien auf unsere Server hochladen müssen.\n\nDer Service wird \"wie besehen\" ohne jegliche Garantien bereitgestellt."
+    },
+    {
+      "title": "2. Annahme der Bedingungen",
+      "content": "Durch den Zugriff auf und die Nutzung dieses Dienstes bestätigen Sie, dass:\n\n• Sie mindestens 13 Jahre alt sind\n• Sie zustimmen, diese Bedingungen einzuhalten\n• Sie den Service legal und verantwortungsvoll nutzen werden\n• Sie die rechtlichen Rechte an den Dateien haben, die Sie konvertieren\n\nWenn Sie mit diesen Bedingungen nicht einverstanden sind, nutzen Sie den Service nicht."
+    },
+    {
+      "title": "3. Zulässige Nutzung",
+      "content": "Sie dürfen unseren Service verwenden, um:\n\n• MKV-Videodateien für den persönlichen Gebrauch in MP4 zu konvertieren\n• Videos zu verarbeiten, die Sie rechtmäßig besitzen\n• Videos für die Kompatibilität mit verschiedenen Geräten zu konvertieren\n\nDer Service ist für den persönlichen und nicht intensiven kommerziellen Gebrauch konzipiert."
+    },
+    {
+      "title": "4. Nutzungsbeschränkungen",
+      "content": "Sie dürfen NICHT:\n\n• Urheberrechtlich geschützte Inhalte ohne Genehmigung konvertieren\n• Den Service für illegale oder nicht autorisierte Zwecke verwenden\n• Versuchen, die Sicherheit des Services zu überlasten, zu hacken oder zu kompromittieren\n• Automatisierte Tools oder Bots verwenden, um auf den Service zuzugreifen\n• Den Service-Code ohne Erlaubnis kopieren, ändern oder verteilen\n\nWir behalten uns das Recht vor, den Zugang bei Missbrauch einzuschränken oder zu verweigern."
+    },
+    {
+      "title": "5. Geistiges Eigentum",
+      "content": "Der MKV zu MP4 Service, einschließlich seines Designs, Codes, seiner Benutzeroberfläche und Inhalte, ist durch Urheberrechte und andere Gesetze zum Schutz des geistigen Eigentums geschützt.\n\nSie behalten alle Rechte an den Dateien, die Sie konvertieren. Wir erheben keinen Anspruch auf Ihre Inhalte.\n\nAngezeigte Marken und Logos sind Eigentum ihrer jeweiligen Inhaber."
+    },
+    {
+      "title": "6. Datenschutz und Daten",
+      "content": "Ihre Privatsphäre ist uns wichtig. Alle Konvertierungen werden in Ihrem Browser durchgeführt:\n\n• Ihre Videodateien werden niemals auf unsere Server hochgeladen\n• Wir speichern Ihre Inhalte nicht und haben keinen Zugriff darauf\n• Wir verwenden Google Analytics zur Verbesserung des Services\n• Weitere Details finden Sie in unserer Datenschutzrichtlinie\n\nHalten Sie Ihre Daten sicher und teilen Sie keine vertraulichen Informationen."
+    },
+    {
+      "title": "7. Haftungsbeschränkung",
+      "content": "IM MAXIMAL GESETZLICH ZULÄSSIGEN UMFANG:\n\n• Der Service wird \"wie besehen\" ohne Garantien bereitgestellt\n• Wir garantieren keine spezifischen Konvertierungsergebnisse\n• Wir sind nicht verantwortlich für Datenverlust, Schäden oder technische Probleme\n• Wir sind nicht verantwortlich für Inhalte, die Sie konvertieren\n• Wir garantieren keine kontinuierliche Serviceverfügbarkeit\n\nNutzen Sie den Service auf eigenes Risiko. Wir empfehlen, Backups wichtiger Dateien zu behalten."
+    },
+    {
+      "title": "8. Serviceverfügbarkeit",
+      "content": "Wir bemühen uns, den Service verfügbar zu halten, garantieren jedoch nicht:\n\n• Einen unterbrechungsfreien Servicebetrieb\n• Die Abwesenheit von Fehlern oder Bugs\n• Kompatibilität mit allen Browsern oder Geräten\n• Die Beibehaltung spezifischer Funktionen\n\nWir können den Service jederzeit ohne Vorankündigung ändern, aussetzen oder einstellen."
+    },
+    {
+      "title": "9. Änderungen der Bedingungen",
+      "content": "Wir behalten uns das Recht vor, diese Bedingungen jederzeit zu ändern. Wichtige Änderungen werden angezeigt durch:\n\n• Aktualisierung des Datums \"Letzte Aktualisierung\"\n• Benachrichtigung auf der Website (falls angemessen)\n\nDie fortgesetzte Nutzung des Services nach Änderungen stellt Ihre Akzeptanz der neuen Bedingungen dar."
+    },
+    {
+      "title": "10. Anwendbares Recht",
+      "content": "Diese Bedingungen unterliegen den internationalen Gesetzen für digitalen Handel und geistiges Eigentum.\n\nJeder Streitfall wird zunächst durch Verhandlungen in gutem Glauben gelöst. Falls unlösbar, wird er gemäß den anwendbaren Gesetzen einem Schiedsverfahren oder der zuständigen Gerichtsbarkeit vorgelegt."
+    },
+    {
+      "title": "11. Schadloshaltung",
+      "content": "Sie verpflichten sich, MKV zu MP4, seine Betreiber und verbundene Unternehmen von jeglichen Ansprüchen, Schäden, Verlusten oder Kosten (einschließlich Anwaltskosten) freizustellen und schadlos zu halten, die sich ergeben aus:\n\n• Ihrer Nutzung des Services\n• Ihrer Verletzung dieser Bedingungen\n• Ihrer Verletzung von Rechten Dritter\n• Inhalten, die Sie konvertieren oder teilen"
+    },
+    {
+      "title": "12. Kontakt",
+      "content": "Wenn Sie Fragen zu diesen Nutzungsbedingungen haben, können Sie uns kontaktieren:\n\nE-Mail: mkvamp4@proton.me\n\nWir werden Ihre Anfragen so schnell wie möglich beantworten."
+    }
+  ],
+  "footer": {
+    "text": "Durch die Nutzung unseres Services akzeptieren Sie diese Nutzungsbedingungen. Letzte Aktualisierung: 13. Oktober 2025."
+  }
+}

@@ -1,0 +1,353 @@
+{
+  "meta": {
+    "title": "mkv mp4 変換 — 無料・オンライン・高速・無劣化",
+    "description": "mkv mp4 変換をオンラインで。無料・高速・安全。フリーソフト不要・登録不要。無劣化（再エンコードなし）で画質・字幕をキープ。ブラウザ内処理。大容量・Mac/Windows/iOS/Android対応。",
+    "keywords": "mkv mp4 変換, mkv を mp4 に変換, mkv mp4 変換 オンライン, mkv mp4 変換 無劣化, mkv mp4 変換 無料, mkv ファイル を mp4 に変換, mkv と mp4 の違い, mkv とは, mkv 拡張子, オンライン mkv mp4 変換 サイト, FFmpeg で mkv を mp4 に変換, VLC で mkv を mp4 に変換, Mac で mkv を mp4 に変換, Windows で mkv を mp4 に変換, スマホで mkv を mp4 に変換, OBS 録画 を mp4 に変換"
+  },
+  "common": {
+    "button": {
+      "selectFile": "ファイルを選択",
+      "addMore": "動画を追加",
+      "convert": "変換",
+      "convertMore": "さらに変換する",
+      "download": "ダウンロード",
+      "downloadAll": "すべてダウンロード"
+    },
+    "label": {
+      "videoPlaceholder": "動画プレースホルダー",
+      "removeVideo": "この動画を削除",
+      "downloadFile": "ファイルをダウンロード"
+    }
+  },
+  "upload": {
+    "sizeHint": "推奨: 各ファイルは 1.5GB 以下。1 回で追加できるのは最大 10 ファイルです。"
+  },
+  "video": {
+    "status": {
+      "idle": "待機中",
+      "ready": "準備完了",
+      "reading": "読み込み中",
+      "processing": "変換中",
+      "completed": "完了",
+      "failed": "失敗"
+    }
+  },
+  "advancedSettings": {
+    "title": "詳細設定",
+    "video": {
+      "title": "ビデオ",
+      "encoder": "エンコーダー",
+      "encoderCopy": "元のまま保持",
+      "encoderH264": "H.264",
+      "encoderH265": "H.265 (HEVC)",
+      "quality": "品質",
+      "qualityOriginal": "オリジナル",
+      "qualityHigh": "高品質",
+      "qualityMedium": "中品質",
+      "qualityLow": "低品質",
+      "resolution": "解像度",
+      "resolutionOriginal": "オリジナル",
+      "resolution2160p": "2160p (4K)",
+      "resolution1080p": "1080p (フル HD)",
+      "resolution720p": "720p (HD)",
+      "resolution480p": "480p",
+      "resolution360p": "360p",
+      "frameRate": "フレームレート",
+      "frameRateOriginal": "オリジナル",
+      "frameRate60": "60 fps",
+      "frameRate30": "30 fps",
+      "frameRate24": "24 fps",
+      "hintFast": "💡 mkv mp4 変換 無劣化 を最速で行うストリームコピーです。",
+      "hintSlow": "⚠️ 再エンコードを使う場合は処理時間が長くなります。"
+    },
+    "audio": {
+      "title": "オーディオ",
+      "encoder": "エンコーダー",
+      "encoderCopy": "元のまま保持",
+      "encoderAac": "AAC",
+      "encoderMp3": "MP3",
+      "quality": "品質",
+      "qualityOriginal": "オリジナル",
+      "qualityHigh": "高品質",
+      "qualityMedium": "中品質",
+      "qualityLow": "低品質",
+      "channels": "チャンネル",
+      "channelsOriginal": "オリジナル",
+      "channelsStereo": "ステレオ",
+      "channelsMono": "モノラル"
+    },
+    "subtitle": {
+      "title": "字幕",
+      "mode": "処理モード",
+      "modeKeep": "字幕を保持",
+      "modeBurn": "字幕を焼き込む",
+      "modeRemove": "字幕を削除",
+      "modeExternal": "外部字幕 (ハード)",
+      "modeExternalSoft": "外部字幕 (ソフト)",
+      "track": "トラック選択",
+      "trackProbing": " (検出中…)",
+      "trackDisabled": " (外部字幕では不要)",
+      "trackAuto": "自動選択",
+      "trackNumber": "トラック {number}",
+      "language": "字幕言語",
+      "languageDisabled": " (外部字幕のみ)",
+      "langUnd": "未指定",
+      "langChi": "中国語",
+      "langEng": "英語",
+      "langJpn": "日本語",
+      "langKor": "韓国語",
+      "langFre": "フランス語",
+      "langGer": "ドイツ語",
+      "langSpa": "スペイン語",
+      "externalFile": "字幕ファイル",
+      "hintBurn": "⚠️ ハード字幕は動画に焼き付けるため再エンコードが必要です。元動画に字幕トラックがない場合は失敗します。",
+      "hintExternalSoft": "ℹ️ ソフト字幕として取り込むので、品質を保ったままプレーヤーでオン／オフできます。"
+    }
+  },
+  "errors": {
+    "subtitleRequired": "字幕ファイルを選択してください。",
+    "downloadFailed": "ダウンロードに失敗しました。しばらくしてから再試行してください。",
+    "selectAtLeastOne": "少なくとも 1 つの動画を選択してください。",
+    "invalidVideoFile": "{fileName} は有効な動画ファイルではありません。",
+    "fileValidationFailed": "ファイルの検証に失敗しました。",
+    "selectAtLeastOneFile": "少なくとも 1 つのファイルを選択してください。",
+    "maxFilesExceeded": "追加できるのは最大 {max} ファイルまでです。",
+    "unsupportedFormat": "対応形式は mkv のみです。対象外のファイル: {fileList}",
+    "fileTooLarge": "個々のファイルは {maxSize} を超えることはできません。サイズが大きすぎるファイル: {fileList}\nヒント: 1.6GB 未満のファイルを選択してください。",
+    "outOfMemory": "メモリ不足です。{size}MB のファイルはブラウザの処理能力を超えています。500MB 未満のファイルを推奨します。",
+    "fileReadFailed": "ファイルの読み込みに失敗しました。破損していないか確認してください。",
+    "conversionFailed": "変換に失敗しました。もう一度お試しください。"
+  },
+  "footer": {
+    "copyright": "© {year} mkv to mp4. 無断複写・転載を禁じます。",
+    "tech": "100% ブラウザ内で完結する mkv mp4 変換",
+    "privacyPolicy": "プライバシーポリシー",
+    "termsOfService": "利用規約"
+  },
+  "languageSwitcher": {
+    "ariaLabel": "言語を切り替える"
+  },
+  "navigation": {
+    "backToHome": "ホームに戻る"
+  },
+  "layout": {
+    "leftAdLabel": "左側の広告スペース",
+    "rightAdLabel": "右側の広告スペース"
+  },
+  "browserConverter": {
+    "unsupportedBrowser": "ブラウザがサポートされていません",
+    "unsupportedDescription1": "ご利用のブラウザは WebAssembly または SharedArrayBuffer に対応していません。",
+    "unsupportedDescription2": "最新の Chrome / Firefox / Edge / Safari をお使いください。",
+    "dragDropHere": "ここに mkv ファイルをドラッグ＆ドロップ",
+    "loadingEngine": "変換エンジンを読み込み中…",
+    "orClickBelow": "または下のボタンをクリックしてファイルを選択",
+    "privacyNote": "🔒 ファイルはブラウザ内で処理され、サーバーには送信されません。",
+    "statsTotal": "合計:",
+    "statsConverting": "変換中:",
+    "statsCompleted": "完了:",
+    "statsFailed": "失敗:",
+    "downloadAllButton": "📥 すべてダウンロード",
+    "clearButton": "🗑️ クリア",
+    "statusIdle": "待機中",
+    "statusLoading": "読み込み中",
+    "statusReading": "ファイルを読み込み中",
+    "statusConverting": "変換中",
+    "statusCompleted": "完了",
+    "statusFailed": "失敗",
+    "downloadTitle": "ダウンロード",
+    "removeTitle": "削除",
+    "duration": "⏱️ 長さ: {time}",
+    "toggleLogsShow": "表示",
+    "toggleLogsHide": "非表示",
+    "logs": "ログ"
+  },
+  "hero": {
+    "title": "無料の mkv を mp4 に変換できるオンラインツール",
+    "subtitle": "無料・安全・高速",
+    "description": "ブラウザ内で変換し、画質・音声・字幕を保ったまま、サーバーへのアップロードは不要。スマホやスマートTVでの再生、SNS への共有、家族や友人への配布に最適です。",
+    "cta": "今すぐ変換"
+  },
+  "howTo": {
+    "title": "オンラインで mkv を mp4 に 変換する手順",
+    "steps": [
+      {
+        "title": "1. mkv ファイルを選択",
+        "description": "「ファイルを選択」を押すか、mkv をドラッグ＆ドロップします。複数の mkv ファイル 変換 にも対応しています。"
+      },
+      {
+        "title": "2. 「変換」をクリック",
+        "description": "mkv mp4 変換 エンジンが順番に処理します。ストリームコピーなので無劣化で mkv から mp4 へ変換されます。"
+      },
+      {
+        "title": "3. mp4 をダウンロード",
+        "description": "変換完了後、個別に保存するか「すべてダウンロード」を利用してください。字幕・音声もそのまま保持されます。"
+      }
+    ]
+  },
+  "features": {
+    "title": "mkv mp4 変換 ツールの特長",
+    "items": [
+      {
+        "title": "完全無料",
+        "description": "無料で mkv を mp4 に変換。隠れたサブスクリプションはありません。"
+      },
+      {
+        "title": "いつでもオンラインで利用可能",
+        "description": "あらゆるブラウザで動作し、インストールは不要です。"
+      },
+      {
+        "title": "かんたん操作のインターフェース",
+        "description": "mkv から mp4 への変換は 3 ステップ。専門知識は要りません。"
+      },
+      {
+        "title": "高速変換",
+        "description": "ローカル処理により、500MB のファイルでも数秒で完了します。"
+      },
+      {
+        "title": "バッチ変換",
+        "description": "複数の mkv を追加すると、順番に自動処理します。"
+      },
+      {
+        "title": "プライバシー重視・安全",
+        "description": "変換は 100% ブラウザ内で実行。動画は端末の外へ出ません。"
+      },
+      {
+        "title": "すべてのデバイスで快適",
+        "description": "スマホ・タブレット・PC など画面サイズに合わせて最適表示します。"
+      },
+      {
+        "title": "利用回数の制限なし",
+        "description": "日次や頻度の上限は設けていません。"
+      },
+      {
+        "title": "登録不要",
+        "description": "メール登録やアカウント作成なしで、すぐに使い始められます。"
+      }
+    ]
+  },
+  "tips": {
+    "title": "mkv mp4 変換 を成功させるコツ",
+    "items": [
+      {
+        "title": "1.5GB 以下のファイルが安定",
+        "description": "超大容量の mkv から mp4 変換 はブラウザメモリを圧迫します。必要に応じて FFmpeg で分割してください。"
+      },
+      {
+        "title": "処理の途中で中断しない",
+        "description": "各動画は順番に変換されます。進行中のジョブを止めた場合は、新しい変換を始める前にページを再読み込みして、ブラウザメモリを解放してください。"
+      },
+      {
+        "title": "完了後は mp4 を保存しリロード",
+        "description": "ダウンロード後にページを更新すると、メモリが解放され次の mkv ファイル 変換 が安定します。"
+      },
+      {
+        "title": "タブをアクティブに保つ",
+        "description": "デスクトップでは Chrome や Edge の利用を推奨し、スリープを避け、\"ダウンロード\" が表示されるまでタブを閉じないでください。"
+      },
+      {
+        "title": "FFmpeg を使うとより細かな制御が可能",
+        "description": "ビットレートや解像度、字幕の詳細を調整したい場合は、ローカルで FFmpeg を使って処理し、結果をオンラインコンバーターで確認してください。"
+      }
+    ]
+  },
+  "alternativeMethods": {
+    "title": "その他の mkv mp4 変換 方法",
+    "items": [
+      {
+        "title": "デスクトップでの FFmpeg",
+        "description": "基本的な FFmpeg コマンド（Windows/macOS/Linux）を使えば、品質を落とさずパラメータを細かく制御して mkv を mp4 に変換できます。"
+      },
+      {
+        "title": "VLC メディアプレーヤー",
+        "description": "VLC の「変換 / 保存」を使うと、GUI から mkv を mp4 に 変換 できます。すでにインストール済みの方向けです。"
+      },
+      {
+        "title": "スマホアプリ",
+        "description": "外出先での簡易的な mkv から mp4 変換 にはアプリも便利です。ただし大容量ファイルはブラウザ版が安定します。"
+      },
+      {
+        "title": "クラウド型サービス",
+        "description": "アップロードして変換する方法もありますが、mp4 変換 オンライン の場合は通信量とプライバシーに注意しましょう。"
+      }
+    ]
+  },
+  "useCases": {
+    "title": "mkv mp4 変換 が役立つシーン",
+    "items": [
+      {
+        "title": "モバイル端末で再生したいとき",
+        "description": "mkv を mp4 に 変換 すれば、iPhone・Android などで互換性を気にせず視聴できます。"
+      },
+      {
+        "title": "Smart TV やメディアプレーヤーで視聴",
+        "description": "テレビや家庭用プレーヤーは mp4 に対応していることが多いため、mkv mp4 違い を気にせず再生できます。"
+      },
+      {
+        "title": "SNS や動画共有サイトに投稿",
+        "description": "YouTube や TikTok にアップする前に mkv ファイル 変換 を行えば、エラーを防げます。"
+      },
+      {
+        "title": "動画編集ソフトに取り込みたい",
+        "description": "Premiere Pro や DaVinci Resolve では mp4 が扱いやすいので、編集前に mkv から mp4 へ変換しておきましょう。"
+      },
+      {
+        "title": "コレクションを標準的な形式でアーカイブ",
+        "description": "mkv を mp4 に変換すると、今後の再生や移行に互換性の高い形式でライブラリを統一できます。"
+      },
+      {
+        "title": "メールで動画を送信する",
+        "description": "一部のメールサービスは mp4 のみを受け付けます。mkv を mp4 に変換しておけば送信がスムーズです。"
+      },
+      {
+        "title": "社内システムや教育プラットフォームへアップロード",
+        "description": "社内ポータルや LMS などで mp4 が求められる場合、事前に mkv を mp4 に変換しておくとアップロード時の拒否を防げます。"
+      }
+    ]
+  },
+  "faq": {
+    "title": "mkv mp4 変換 に関するよくある質問",
+    "items": [
+      {
+        "question": "この mkv から mp4 へのオンライン変換ツールは無料ですか？",
+        "answer": "はい。サブスクリプションや登録は不要です。ページを開いてファイルを選び、「変換」をクリックし、生成された mp4 をダウンロードするだけです。"
+      },
+      {
+        "question": "この無料コンバーターは安全ですか？",
+        "answer": "はい。変換は 100% ブラウザ内で行われ、動画を外部サーバーへアップロードしません。ファイルは端末内に留まります。"
+      },
+      {
+        "question": "mkv を mp4 に変換すると画質や字幕は失われますか？",
+        "answer": "いいえ。ストリームコピーを用いるため、コンテナのみを変更し、画質・音声トラック・ソフト字幕は保持されます。"
+      },
+      {
+        "question": "サイズの上限はありますか？",
+        "answer": "各 mkv は 1.5GB 以下を推奨します。処理はメモリ上で実行されるため、非常に大きな動画ではブラウザ資源が不足する場合があります。必要なら分割や圧縮をご検討ください。"
+      },
+      {
+        "question": "オンライン変換にはどれくらい時間がかかりますか？",
+        "answer": "ファイルサイズによります。ローカル処理のため、300～500MB の mkv は数秒で完了し、1.5GB 近い場合は約 1 分が目安です。変換中はタブをアクティブにしてください。"
+      },
+      {
+        "question": "複数の mkv を同時に mp4 へ変換できますか？",
+        "answer": "最大 10 ファイルまで追加できます。順番に処理してメモリエラーを避けます。必要に応じて mp4 を保存後、ページを更新してから次のバッチを開始してください。"
+      },
+      {
+        "question": "変換で再エンコードは行われますか？",
+        "answer": "いいえ。コンテナの変更のみを行う直接コピーのため、再圧縮はしません。高速かつ実質的に劣化は発生しません。"
+      },
+      {
+        "question": "スマホから mkv を mp4 に変換できますか？",
+        "answer": "はい。レスポンシブ対応で、スマホやタブレットでも利用できます。大きな mkv（約 1.5GB）はデスクトップの方が安定します。"
+      }
+    ]
+  },
+  "structuredData": {
+    "howTo": {
+      "name": "オンラインで mkv を mp4 に変換する方法",
+      "step1": "ステップ 1: mkv ファイルを選択する",
+      "step2": "ステップ 2: 「変換」をクリックして数秒待つ",
+      "step3": "ステップ 3: mp4 をすぐにダウンロードする",
+      "step4": "ステップ 4（任意）: 「すべてダウンロード」で一括保存する"
+    }
+  }
+}

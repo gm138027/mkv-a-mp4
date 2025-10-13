@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "title": "Privacy Policy - MKV to MP4 Converter",
+    "description": "Privacy policy for MKV to MP4 converter. Information about how we process and protect your data."
+  },
+  "header": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: October 13, 2025"
+  },
+  "intro": {
+    "text": "At MKV to MP4, we respect your privacy. This policy explains how our video conversion tool works and what data we process."
+  },
+  "sections": [
+    {
+      "title": "1. 100% Browser-Based Processing",
+      "content": "Our tool works completely in your browser using WebAssembly technology. Your video files are **never uploaded to our servers**. All conversion processing happens locally on your device."
+    },
+    {
+      "title": "2. Data We DO NOT Collect",
+      "content": "We do not collect, store, or have access to:\n\n• Your original video files\n• Your converted video files\n• File names\n• Video content\n• Personally identifiable information\n\nAll your files remain on your device at all times."
+    },
+    {
+      "title": "3. Use of Google Analytics",
+      "content": "We use Google Analytics to understand how users interact with our tool. The data collected is anonymous and includes:\n\n• Pages visited\n• Time spent on site\n• Browser type and operating system\n• Country and city (approximate)\n• Browser language\n\nThis data helps us improve the user experience. You can disable Google Analytics using browser extensions like \"uBlock Origin\" or by configuring your browser to block third-party cookies."
+    },
+    {
+      "title": "4. Cookies and Local Storage",
+      "content": "We use browser local storage (localStorage) only to:\n\n• Remember your language preference\n• Improve your user experience\n\nWe do not use cookies for tracking or advertising. You can clear local storage at any time from your browser settings."
+    },
+    {
+      "title": "5. Third-Party Links",
+      "content": "Our site may contain links to third-party websites. We are not responsible for the privacy practices of these sites. We recommend reading their privacy policies before sharing personal information."
+    },
+    {
+      "title": "6. Data Security",
+      "content": "Since your information remains on your device and is not transmitted to our servers, you maintain full control over the security of your data. We recommend:\n\n• Using the latest version of your browser\n• Keeping your operating system up to date\n• Using secure connections (HTTPS)"
+    },
+    {
+      "title": "7. Use by Minors",
+      "content": "Our service is available to users of all ages. Since we do not collect personal information, there are no special privacy risks for minors. Parents and guardians should supervise minors' Internet use."
+    },
+    {
+      "title": "8. Changes to This Policy",
+      "content": "We may update this privacy policy occasionally. The \"Last updated\" date will be updated accordingly. We recommend reviewing this page periodically to stay informed about any changes."
+    },
+    {
+      "title": "9. Your Rights",
+      "content": "As we do not collect or store personal data, there is no data to request, modify, or delete. You have full control over any data stored locally in your browser, which you can delete at any time."
+    },
+    {
+      "title": "10. Contact",
+      "content": "If you have questions about this privacy policy, you can contact us at:\n\nEmail: mkvamp4@proton.me\n\nWe will respond to your inquiries as soon as possible."
+    }
+  ],
+  "footer": {
+    "text": "This privacy policy is effective as of October 13, 2025."
+  }
+}

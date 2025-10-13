@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "title": "Política de Privacidad - MKV a MP4 Conversor",
+    "description": "Política de privacidad del convertidor MKV a MP4. Información sobre cómo procesamos y protegemos tus datos."
+  },
+  "header": {
+    "title": "Política de Privacidad",
+    "lastUpdated": "Última actualización: 13 de octubre de 2025"
+  },
+  "intro": {
+    "text": "En MKV a MP4, respetamos tu privacidad. Esta política explica cómo funciona nuestra herramienta de conversión de video y qué datos procesamos."
+  },
+  "sections": [
+    {
+      "title": "1. Procesamiento 100% en el Navegador",
+      "content": "Nuestra herramienta funciona completamente en tu navegador utilizando tecnología WebAssembly. Tus archivos de video **nunca se suben a nuestros servidores**. Todo el procesamiento de conversión ocurre localmente en tu dispositivo."
+    },
+    {
+      "title": "2. Datos que NO Recopilamos",
+      "content": "No recopilamos, almacenamos ni tenemos acceso a:\n\n• Tus archivos de video originales\n• Tus archivos de video convertidos\n• Nombres de archivos\n• Contenido de los videos\n• Información personal identificable\n\nTodos tus archivos permanecen en tu dispositivo en todo momento."
+    },
+    {
+      "title": "3. Uso de Google Analytics",
+      "content": "Utilizamos Google Analytics para entender cómo los usuarios interactúan con nuestra herramienta. Los datos recopilados son anónimos e incluyen:\n\n• Páginas visitadas\n• Tiempo de permanencia\n• Tipo de navegador y sistema operativo\n• País y ciudad (aproximados)\n• Idioma del navegador\n\nEstos datos nos ayudan a mejorar la experiencia del usuario. Puedes desactivar Google Analytics usando extensiones del navegador como \"uBlock Origin\" o configurando tu navegador para bloquear cookies de terceros."
+    },
+    {
+      "title": "4. Cookies y Almacenamiento Local",
+      "content": "Utilizamos almacenamiento local del navegador (localStorage) únicamente para:\n\n• Recordar tu preferencia de idioma\n• Mejorar tu experiencia de usuario\n\nNo utilizamos cookies para rastreo o publicidad. Puedes borrar el almacenamiento local en cualquier momento desde la configuración de tu navegador."
+    },
+    {
+      "title": "5. Enlaces de Terceros",
+      "content": "Nuestro sitio puede contener enlaces a sitios web de terceros. No somos responsables de las prácticas de privacidad de estos sitios. Te recomendamos leer sus políticas de privacidad antes de compartir información personal."
+    },
+    {
+      "title": "6. Seguridad de los Datos",
+      "content": "Dado que tu información permanece en tu dispositivo y no se transmite a nuestros servidores, mantienes el control total sobre la seguridad de tus datos. Recomendamos:\n\n• Usar la última versión de tu navegador\n• Mantener tu sistema operativo actualizado\n• Usar conexiones seguras (HTTPS)"
+    },
+    {
+      "title": "7. Uso por Menores",
+      "content": "Nuestro servicio está disponible para usuarios de todas las edades. Dado que no recopilamos información personal, no hay riesgos de privacidad especiales para menores. Los padres y tutores deben supervisar el uso de Internet de los menores."
+    },
+    {
+      "title": "8. Cambios en esta Política",
+      "content": "Podemos actualizar esta política de privacidad ocasionalmente. La fecha de \"Última actualización\" se actualizará en consecuencia. Te recomendamos revisar esta página periódicamente para estar informado sobre cualquier cambio."
+    },
+    {
+      "title": "9. Tus Derechos",
+      "content": "Como no recopilamos ni almacenamos datos personales, no hay datos que solicitar, modificar o eliminar. Tienes control total sobre cualquier dato almacenado localmente en tu navegador, que puedes borrar en cualquier momento."
+    },
+    {
+      "title": "10. Contacto",
+      "content": "Si tienes preguntas sobre esta política de privacidad, puedes contactarnos a través de:\n\nCorreo electrónico: mkvamp4@proton.me\n\nResponderemos a tus consultas lo antes posible."
+    }
+  ],
+  "footer": {
+    "text": "Esta política de privacidad es efectiva a partir del 13 de octubre de 2025."
+  }
+}

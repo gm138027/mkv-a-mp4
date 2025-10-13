@@ -1,0 +1,353 @@
+{
+  "meta": {
+    "title": "MKV zu MP4 umwandeln — Kostenlos, online & schnell",
+    "description": "MKV zu MP4 online umwandeln: kostenlos, schnell, sicher. Qualität & Untertitel bleiben erhalten (verlustfrei). Keine Registrierung; Verarbeitung lokal.",
+    "keywords": "mkv zu mp4, mkv konvertieren, video konverter"
+  },
+  "common": {
+    "button": {
+      "selectFile": "Datei auswählen",
+      "addMore": "Videos hinzufügen",
+      "convert": "Konvertieren",
+      "convertMore": "Weitere konvertieren",
+      "download": "Herunterladen",
+      "downloadAll": "Alle herunterladen"
+    },
+    "label": {
+      "videoPlaceholder": "Video-Platzhalter",
+      "removeVideo": "Dieses Video entfernen",
+      "downloadFile": "Datei herunterladen"
+    }
+  },
+  "upload": {
+    "sizeHint": "Empfohlen: Jede Datei sollte unter 1,5 GB sein. Maximal 10 Dateien auf einmal."
+  },
+  "video": {
+    "status": {
+      "idle": "Warten",
+      "ready": "Bereit",
+      "reading": "Datei lesen",
+      "processing": "Konvertierung läuft",
+      "completed": "Abgeschlossen",
+      "failed": "Fehlgeschlagen"
+    }
+  },
+  "advancedSettings": {
+    "title": "Erweiterte Einstellungen",
+    "video": {
+      "title": "Video",
+      "encoder": "Encoder",
+      "encoderCopy": "Original behalten",
+      "encoderH264": "H.264",
+      "encoderH265": "H.265 (HEVC)",
+      "quality": "Qualität",
+      "qualityOriginal": "Original",
+      "qualityHigh": "Hoch",
+      "qualityMedium": "Mittel",
+      "qualityLow": "Niedrig",
+      "resolution": "Auflösung",
+      "resolutionOriginal": "Original",
+      "resolution2160p": "2160p (4K)",
+      "resolution1080p": "1080p (Full HD)",
+      "resolution720p": "720p (HD)",
+      "resolution480p": "480p",
+      "resolution360p": "360p",
+      "frameRate": "Bildrate",
+      "frameRateOriginal": "Original",
+      "frameRate60": "60 fps",
+      "frameRate30": "30 fps",
+      "frameRate24": "24 fps",
+      "hintFast": "💡 Verwendet die schnellste Geschwindigkeit, behält die Originalqualität bei",
+      "hintSlow": "⚠️ Neucodierung erfordert mehr Zeit"
+    },
+    "audio": {
+      "title": "Audio",
+      "encoder": "Codierung",
+      "encoderCopy": "Original behalten",
+      "encoderAac": "AAC",
+      "encoderMp3": "MP3",
+      "quality": "Qualität",
+      "qualityOriginal": "Original",
+      "qualityHigh": "Hoch",
+      "qualityMedium": "Mittel",
+      "qualityLow": "Niedrig",
+      "channels": "Kanäle",
+      "channelsOriginal": "Original",
+      "channelsStereo": "Stereo",
+      "channelsMono": "Mono"
+    },
+    "subtitle": {
+      "title": "Untertitel",
+      "mode": "Verarbeitungsmodus",
+      "modeKeep": "Untertitel behalten",
+      "modeBurn": "Untertitel einbrennen",
+      "modeRemove": "Untertitel entfernen",
+      "modeExternal": "Externe Untertitel (hart)",
+      "modeExternalSoft": "Externe Untertitel (weich)",
+      "track": "Spurauswahl",
+      "trackProbing": " (wird erkannt...)",
+      "trackDisabled": " (nicht erforderlich für externe Untertitel)",
+      "trackAuto": "Automatische Auswahl",
+      "trackNumber": "Spur {number}",
+      "language": "Untertitelsprache",
+      "languageDisabled": " (nur für externe Untertitel)",
+      "langUnd": "Nicht angegeben",
+      "langChi": "Chinesisch",
+      "langEng": "Englisch",
+      "langJpn": "Japanisch",
+      "langKor": "Koreanisch",
+      "langFre": "Französisch",
+      "langGer": "Deutsch",
+      "langSpa": "Spanisch",
+      "externalFile": "Untertiteldatei",
+      "hintBurn": "⚠️ Harte Untertitel werden in das Video eingebrannt, erfordert Neucodierung (langsamer). Hinweis: Die Quelldatei muss Untertitelspuren enthalten, sonst schlägt die Konvertierung fehl.",
+      "hintExternalSoft": "ℹ️ Externe Untertitel werden als weiche Untertitel importiert, behalten die Originalqualität bei und ermöglichen das Ein-/Ausschalten im Player."
+    }
+  },
+  "errors": {
+    "subtitleRequired": "Bitte wählen Sie eine Untertiteldatei aus",
+    "downloadFailed": "Download fehlgeschlagen, bitte versuchen Sie es später erneut",
+    "selectAtLeastOne": "Bitte wählen Sie mindestens ein Video aus",
+    "invalidVideoFile": "{fileName} ist keine gültige Videodatei",
+    "fileValidationFailed": "Dateiüberprüfung fehlgeschlagen",
+    "selectAtLeastOneFile": "Bitte wählen Sie mindestens eine Datei aus",
+    "maxFilesExceeded": "Maximal {max} Dateien erlaubt",
+    "unsupportedFormat": "Nur mkv-Format wird unterstützt, falsches Dateiformat: {fileList}",
+    "fileTooLarge": "Einzelne Datei darf {maxSize} nicht überschreiten.\nDateien zu groß: {fileList}\n\nVorschlag: Bitte wählen Sie Dateien unter 1,6 GB aus.",
+    "outOfMemory": "Nicht genügend Speicher! Die {size}MB-Datei übersteigt die Verarbeitungskapazität des Browsers.\nEmpfohlen, Dateien <500MB zu verwenden.",
+    "fileReadFailed": "Fehler beim Lesen der Datei. Bitte überprüfen Sie, ob die Datei vollständig ist.",
+    "conversionFailed": "Konvertierung fehlgeschlagen"
+  },
+  "footer": {
+    "copyright": "© {year} mkv zu mp4. Alle Rechte vorbehalten.",
+    "tech": "100% browserbasierte Konvertierung",
+    "privacyPolicy": "Datenschutzrichtlinie",
+    "termsOfService": "Nutzungsbedingungen"
+  },
+  "languageSwitcher": {
+    "ariaLabel": "Sprache wechseln"
+  },
+  "navigation": {
+    "backToHome": "Zurück zur Startseite"
+  },
+  "layout": {
+    "leftAdLabel": "Linke Werbefläche",
+    "rightAdLabel": "Rechte Werbefläche"
+  },
+  "browserConverter": {
+    "unsupportedBrowser": "Browser nicht unterstützt",
+    "unsupportedDescription1": "Ihr Browser unterstützt WebAssembly oder SharedArrayBuffer nicht.",
+    "unsupportedDescription2": "Bitte verwenden Sie die neueste Version von Chrome, Firefox, Edge oder Safari.",
+    "dragDropHere": "mkv-Dateien hier ablegen",
+    "loadingEngine": "⏳ Konvertierungs-Engine wird geladen...",
+    "orClickBelow": "oder klicken Sie auf die Schaltfläche unten, um Dateien auszuwählen",
+    "privacyNote": "🔒 Dateien werden in Ihrem Browser verarbeitet, nicht auf einen Server hochgeladen",
+    "statsTotal": "Gesamt:",
+    "statsConverting": "Konvertierung:",
+    "statsCompleted": "Abgeschlossen:",
+    "statsFailed": "Fehlgeschlagen:",
+    "downloadAllButton": "📥 Alle herunterladen",
+    "clearButton": "🗑️ Löschen",
+    "statusIdle": "Warten",
+    "statusLoading": "Laden",
+    "statusReading": "Datei lesen",
+    "statusConverting": "Konvertierung läuft",
+    "statusCompleted": "Abgeschlossen",
+    "statusFailed": "Fehlgeschlagen",
+    "downloadTitle": "Herunterladen",
+    "removeTitle": "Entfernen",
+    "duration": "⏱️ Dauer: {time}",
+    "toggleLogsShow": "Anzeigen",
+    "toggleLogsHide": "Ausblenden",
+    "logs": "Protokolle"
+  },
+  "hero": {
+    "title": "Kostenloser Online mkv zu mp4 Konverter",
+    "subtitle": "Kostenlos, Sicher und Schnell",
+    "description": "Konvertieren Sie Videos direkt im Browser unter Beibehaltung von Qualität, Audio und Untertiteln : ohne Server-Upload. Perfekt für das Abspielen von mkv-Dateien auf Mobilgeräten, Smart-TVs, zum Teilen in sozialen Medien oder einfachen Weitergeben an andere.",
+    "cta": "Jetzt konvertieren"
+  },
+  "features": {
+    "title": "mkv zu mp4 Konverter Funktionen",
+    "items": [
+      {
+        "title": "Völlig kostenlos",
+        "description": "Konvertieren Sie mkv zu mp4 ohne einen Cent zu bezahlen oder versteckte Abonnements."
+      },
+      {
+        "title": "Immer online verfügbar",
+        "description": "Unser Online mkv zu mp4 Konverter funktioniert in jedem Browser : keine Softwareinstallation erforderlich."
+      },
+      {
+        "title": "Benutzerfreundliche Oberfläche",
+        "description": "Nur drei Klicks, um mkv zu mp4 zu konvertieren : keine technischen Kenntnisse erforderlich."
+      },
+      {
+        "title": "Schnelle Konvertierung",
+        "description": "Selbst eine 500MB-Datei konvertiert in Sekunden dank lokaler Verarbeitung."
+      },
+      {
+        "title": "Batch-Konvertierung",
+        "description": "Fügen Sie mehrere mkv-Dateien hinzu und das System konvertiert sie automatisch nacheinander."
+      },
+      {
+        "title": "Privat und sicher",
+        "description": "Die Konvertierung erfolgt zu 100% in Ihrem Browser : Ihre Videos verlassen niemals Ihr Gerät."
+      },
+      {
+        "title": "Responsive auf allen Geräten",
+        "description": "Die Oberfläche passt sich an Smartphones, Tablets und Computer an für ein komfortables Erlebnis auf jedem Bildschirm."
+      },
+      {
+        "title": "Keine Nutzungsbeschränkungen",
+        "description": "Ideal für unbegrenzte mkv zu mp4 Konvertierung : wir setzen keine täglichen Limits oder Häufigkeitsbeschränkungen."
+      },
+      {
+        "title": "Keine Registrierung erforderlich",
+        "description": "Starten Sie sofort mit der Konvertierung : keine E-Mail oder Kontoerstellung nötig."
+      }
+    ]
+  },
+  "howTo": {
+    "title": "So konvertieren Sie mkv zu mp4 online",
+    "steps": [
+      {
+        "title": "Wählen Sie Ihre mkv-Datei",
+        "description": "Klicken Sie auf \"Datei auswählen\" oder ziehen Sie das mkv-Video, das Sie zu mp4 konvertieren möchten. Sie können mehrere Dateien gleichzeitig hinzufügen."
+      },
+      {
+        "title": "Klicken Sie auf \"Konvertieren\" und warten Sie einige Sekunden",
+        "description": "Das Tool verarbeitet jedes Video in Ihrem Browser, und dank sequenzieller Verarbeitung konvertiert eine 500MB-Datei in nur wenigen Sekunden."
+      },
+      {
+        "title": "Laden Sie Ihr mp4 sofort herunter",
+        "description": "Wenn alles fertig ist, laden Sie jedes Video einzeln herunter oder verwenden Sie \"Alle herunterladen\". Das mp4 behält das ursprüngliche Audio und die Untertitel bei."
+      }
+    ]
+  },
+  "tips": {
+    "title": "So erhalten Sie das beste Ergebnis beim Online-Konvertieren von mkv zu mp4",
+    "items": [
+      {
+        "title": "Dateien unter 1,5GB halten",
+        "description": "Der Konverter ist am stabilsten mit mittelgroßen Dateien. Wenn Ihr mkv sehr groß ist, komprimieren oder trimmen Sie es vorher mit FFmpeg auf Ihrem Computer."
+      },
+      {
+        "title": "Vermeiden Sie Abbrüche während des Vorgangs",
+        "description": "Jedes Video wird der Reihe nach konvertiert. Wenn Sie einen laufenden Job stoppen, aktualisieren Sie die Seite vor dem Start eines neuen, um Browser-Speicher freizugeben."
+      },
+      {
+        "title": "Nach Abschluss herunterladen und Tab aktualisieren",
+        "description": "Nach Abschluss der Konvertierung laden Sie das mp4 herunter und laden Sie die Seite neu, um sicherzustellen, dass Browser-Ressourcen ordnungsgemäß wiederverwendet werden."
+      },
+      {
+        "title": "Tab aktiv halten",
+        "description": "Verwenden Sie Chrome oder Edge auf dem Desktop, verhindern Sie, dass Ihr Computer in den Ruhemodus wechselt, und schließen Sie den Tab nicht, bis Sie die Schaltfläche \"Herunterladen\" sehen."
+      },
+      {
+        "title": "FFmpeg für mehr Kontrolle verwenden",
+        "description": "Wenn Sie Bitrate, Auflösung oder erweiterte Untertiteleinstellungen anpassen müssen, verarbeiten Sie das Video lokal mit FFmpeg und überprüfen Sie dann das Ergebnis mit dem Online-Konverter."
+      }
+    ]
+  },
+  "alternativeMethods": {
+    "title": "Andere Möglichkeiten, mkv zu mp4 zu konvertieren",
+    "items": [
+      {
+        "title": "FFmpeg auf dem Desktop",
+        "description": "Verwenden Sie grundlegende FFmpeg-Befehle (Windows/macOS/Linux), um mkv zu mp4 ohne Qualitätsverlust und mit vollständiger Parameterkontrolle zu konvertieren."
+      },
+      {
+        "title": "VLC Media Player",
+        "description": "VLC enthält eine \"Konvertieren/Speichern\"-Option, mit der Sie mkv von einer grafischen Oberfläche aus zu mp4 konvertieren können : ideal, wenn Sie es bereits installiert haben."
+      },
+      {
+        "title": "Mobile Apps",
+        "description": "Android und iOS bieten Apps, die mkv-Videos direkt auf Ihrem Telefon zu mp4 konvertieren : nützlich, wenn Sie einen schnellen Clip teilen müssen."
+      },
+      {
+        "title": "Cloud-Dienste",
+        "description": "Online-Plattformen laden Ihr Video auf einen Server hoch und geben das konvertierte mp4 zurück : nützlich für große Konvertierungen bei stabiler Verbindung."
+      }
+    ]
+  },
+  "useCases": {
+    "title": "Wann müssen Sie mkv zu mp4 konvertieren?",
+    "items": [
+      {
+        "title": "mkv auf Mobiltelefonen oder Tablets abspielen",
+        "description": "Konvertieren Sie mkv zu mp4 und genießen Sie Ihre Videos auf iPhone, iPad oder Android-Geräten ohne Kompatibilitätsprobleme oder zusätzliche Apps."
+      },
+      {
+        "title": "Filme auf Smart TV oder Heimkino-Playern ansehen",
+        "description": "Die Konvertierung von mkv-Dateien zu mp4 stellt sicher, dass die meisten Smart-TVs und Media Player den Inhalt von USB oder lokalem Netzwerk lesen können."
+      },
+      {
+        "title": "Videos in sozialen Medien teilen",
+        "description": "Die Konvertierung von mkv zu mp4 ermöglicht es Ihnen, Clips auf YouTube, TikTok, Instagram oder Facebook im Format hochzuladen, das diese Plattformen ohne Ablehnung akzeptieren."
+      },
+      {
+        "title": "Material in Videoprogrammen bearbeiten",
+        "description": "Viele Editoren (Premiere, Final Cut, DaVinci) verarbeiten mp4 reibungsloser : konvertieren Sie Ihre mkv-Dateien, bevor Sie sie zur Timeline hinzufügen."
+      },
+      {
+        "title": "Sammlungen in einem Standardformat archivieren",
+        "description": "Die Konvertierung von mkv-Dateien zu mp4 hilft, Ihre digitale Bibliothek in einem kompatibleren Format für zukünftige Wiedergabe und Migrationen zu vereinheitlichen."
+      },
+      {
+        "title": "Videos per E-Mail versenden",
+        "description": "Einige E-Mail-Dienste akzeptieren nur mp4-Anhänge : die Konvertierung von mkv zu mp4 erleichtert das Versenden und reduziert Meldungen über nicht unterstützte Dateien."
+      },
+      {
+        "title": "Material auf interne oder Bildungsplattformen hochladen",
+        "description": "Wenn Ihr Unternehmen oder Schulungszentrum mp4 erfordert, vermeidet die Konvertierung von mkv Ablehnungen beim Hochladen von Dateien auf Intranets, LMS oder Unternehmensrepositorys."
+      }
+    ]
+  },
+  "faq": {
+    "title": "Häufig gestellte Fragen zur Konvertierung von mkv zu mp4",
+    "items": [
+      {
+        "question": "Kann ich diesen Online mkv zu mp4 Konverter kostenlos nutzen?",
+        "answer": "Ja. Wir bieten kostenlose Konvertierung ohne Abonnements oder Registrierung. Öffnen Sie einfach die Seite, wählen Sie Ihre Datei aus, klicken Sie auf \"Konvertieren\" und laden Sie die generierte mp4-Datei herunter."
+      },
+      {
+        "question": "Ist es sicher, diesen kostenlosen Video-Konverter zu verwenden?",
+        "answer": "Absolut. Die Konvertierung erfolgt zu 100% in Ihrem Browser, ohne Videos auf externe Server hochzuladen, sodass Ihre Dateien auf Ihrem Gerät bleiben."
+      },
+      {
+        "question": "Verliert die Konvertierung von mkv zu mp4 Qualität oder Untertitel?",
+        "answer": "Nein. Wir verwenden Stream Copy, sodass die mp4-Datei die ursprüngliche Qualität, Audiospuren und weichen Untertitel aus dem mkv behält."
+      },
+      {
+        "question": "Gibt es eine Größenbeschränkung bei der Konvertierung von mkv zu mp4?",
+        "answer": "Wir empfehlen, jede einzelne mkv-Datei unter 1,5GB zu halten. Der Prozess läuft im Speicher, und wenn ein Video sehr groß ist, kann dem Browser die Ressourcen ausgehen. Teilen oder komprimieren Sie die Datei mit FFmpeg, wenn sie diese Größe überschreitet."
+      },
+      {
+        "question": "Wie lange dauert die Online-Konvertierung von mkv zu mp4?",
+        "answer": "Es hängt von der Dateigröße ab. Da es sich um einen lokalen Prozess handelt, wird ein 300-500MB mkv normalerweise in Sekunden fertig; einer nahe 1,5GB dauert etwa eine Minute. Halten Sie den Tab während der Konvertierung aktiv."
+      },
+      {
+        "question": "Kann ich mehrere mkv-Dateien gleichzeitig zu mp4 konvertieren?",
+        "answer": "Sie können bis zu 10 mkv-Dateien hinzufügen. Der Konverter verarbeitet sie nacheinander, um Speicherfehler zu vermeiden. Wenn Sie Speicher freigeben müssen, laden Sie die mp4-Dateien herunter und aktualisieren Sie die Seite, bevor Sie ein weiteres Batch starten."
+      },
+      {
+        "question": "Codiert die Konvertierung von mkv zu mp4 das Video neu?",
+        "answer": "Nein. Dieser Prozess verwendet direktes Kopieren : er ändert nur den Container von mkv zu mp4, ohne das Video oder Audio neu zu komprimieren, was es schnell und verlustfrei macht."
+      },
+      {
+        "question": "Kann ich mkv von meinem Telefon aus zu mp4 konvertieren?",
+        "answer": "Ja, die Oberfläche ist responsive und funktioniert auf Mobiltelefonen oder Tablets. Für große mkv-Dateien (um 1,5GB) empfehlen wir einen Desktop-Browser, da dieser Speicher besser verwaltet."
+      }
+    ]
+  },
+  "structuredData": {
+    "howTo": {
+      "name": "So konvertieren Sie mkv zu mp4 online",
+      "step1": "Schritt 1: Wählen Sie Ihre mkv-Datei",
+      "step2": "Schritt 2: Klicken Sie auf \"Konvertieren\" und warten Sie einige Sekunden",
+      "step3": "Schritt 3: Laden Sie Ihr mp4 sofort herunter",
+      "step4": "Schritt 4 (optional): Verwenden Sie \"Alle herunterladen\" für das Herunterladen im Batch"
+    }
+  }
+}

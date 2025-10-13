@@ -3,12 +3,27 @@
 # dependencies
 /node_modules
 /.pnp
-.pnp.*
-.yarn/*
+.pnp.js
+.yarn/install-state.gz
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+
+# temporary files
+*.tmp
+*.temp
+temp_*
+test-*.md
+*-REPORT.md
+*-AUDIT*.md
+*_FIXES.md
+*IMPLEMENTATION*.md
+*.ps1
+validate-*.js
+fix-*.mjs
+update-*.mjs
+clear-*.html
 
 # testing
 /coverage
@@ -39,3 +54,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+storage/

@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "title": "Datenschutzrichtlinie - MKV zu MP4 Konverter",
+    "description": "Datenschutzrichtlinie für den MKV zu MP4 Konverter. Informationen darüber, wie wir Ihre Daten verarbeiten und schützen."
+  },
+  "header": {
+    "title": "Datenschutzrichtlinie",
+    "lastUpdated": "Letzte Aktualisierung: 13. Oktober 2025"
+  },
+  "intro": {
+    "text": "Bei MKV zu MP4 respektieren wir Ihre Privatsphäre. Diese Richtlinie erklärt, wie unser Video-Konvertierungstool funktioniert und welche Daten wir verarbeiten."
+  },
+  "sections": [
+    {
+      "title": "1. 100% Browserbasierte Verarbeitung",
+      "content": "Unser Tool funktioniert vollständig in Ihrem Browser unter Verwendung der WebAssembly-Technologie. Ihre Videodateien werden **niemals auf unsere Server hochgeladen**. Die gesamte Konvertierungsverarbeitung erfolgt lokal auf Ihrem Gerät."
+    },
+    {
+      "title": "2. Daten, die wir NICHT sammeln",
+      "content": "Wir sammeln, speichern oder haben keinen Zugriff auf:\n\n• Ihre Original-Videodateien\n• Ihre konvertierten Videodateien\n• Dateinamen\n• Videoinhalte\n• Personenbezogene Informationen\n\nAlle Ihre Dateien verbleiben jederzeit auf Ihrem Gerät."
+    },
+    {
+      "title": "3. Verwendung von Google Analytics",
+      "content": "Wir verwenden Google Analytics, um zu verstehen, wie Benutzer mit unserem Tool interagieren. Die gesammelten Daten sind anonym und umfassen:\n\n• Besuchte Seiten\n• Auf der Website verbrachte Zeit\n• Browsertyp und Betriebssystem\n• Land und Stadt (ungefähr)\n• Browsersprache\n\nDiese Daten helfen uns, die Benutzererfahrung zu verbessern. Sie können Google Analytics mit Browser-Erweiterungen wie \"uBlock Origin\" deaktivieren oder Ihren Browser so konfigurieren, dass Drittanbieter-Cookies blockiert werden."
+    },
+    {
+      "title": "4. Cookies und Lokaler Speicher",
+      "content": "Wir verwenden den lokalen Browser-Speicher (localStorage) nur für:\n\n• Speichern Ihrer Sprachpräferenz\n• Verbesserung Ihrer Benutzererfahrung\n\nWir verwenden keine Cookies für Tracking oder Werbung. Sie können den lokalen Speicher jederzeit in Ihren Browsereinstellungen löschen."
+    },
+    {
+      "title": "5. Links zu Dritten",
+      "content": "Unsere Website kann Links zu Websites Dritter enthalten. Wir sind nicht verantwortlich für die Datenschutzpraktiken dieser Websites. Wir empfehlen, deren Datenschutzrichtlinien zu lesen, bevor Sie persönliche Informationen teilen."
+    },
+    {
+      "title": "6. Datensicherheit",
+      "content": "Da Ihre Informationen auf Ihrem Gerät verbleiben und nicht an unsere Server übertragen werden, behalten Sie die volle Kontrolle über die Sicherheit Ihrer Daten. Wir empfehlen:\n\n• Verwendung der neuesten Version Ihres Browsers\n• Aktualisierung Ihres Betriebssystems\n• Verwendung sicherer Verbindungen (HTTPS)"
+    },
+    {
+      "title": "7. Nutzung durch Minderjährige",
+      "content": "Unser Service steht Benutzern jeden Alters zur Verfügung. Da wir keine persönlichen Informationen sammeln, gibt es keine besonderen Datenschutzrisiken für Minderjährige. Eltern und Erziehungsberechtigte sollten die Internetnutzung von Minderjährigen überwachen."
+    },
+    {
+      "title": "8. Änderungen dieser Richtlinie",
+      "content": "Wir können diese Datenschutzrichtlinie gelegentlich aktualisieren. Das Datum der \"Letzten Aktualisierung\" wird entsprechend aktualisiert. Wir empfehlen, diese Seite regelmäßig zu überprüfen, um über Änderungen informiert zu bleiben."
+    },
+    {
+      "title": "9. Ihre Rechte",
+      "content": "Da wir keine personenbezogenen Daten sammeln oder speichern, gibt es keine Daten zum Anfordern, Ändern oder Löschen. Sie haben die volle Kontrolle über alle lokal in Ihrem Browser gespeicherten Daten, die Sie jederzeit löschen können."
+    },
+    {
+      "title": "10. Kontakt",
+      "content": "Wenn Sie Fragen zu dieser Datenschutzrichtlinie haben, können Sie uns kontaktieren unter:\n\nE-Mail: mkvamp4@proton.me\n\nWir werden Ihre Anfragen so schnell wie möglich beantworten."
+    }
+  ],
+  "footer": {
+    "text": "Diese Datenschutzrichtlinie ist gültig ab dem 13. Oktober 2025."
+  }
+}
