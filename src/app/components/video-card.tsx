@@ -43,7 +43,7 @@ export const VideoCard = ({ video, onRemove }: VideoCardProps) => {
             onClick={() => onRemove(video.id)}
             aria-label={t('common.label.removeVideo')}
           >
-            <Image src="/icons/remove.svg" alt={t('common.label.videoPlaceholder')} width={12} height={12} loading="lazy" />
+            <Image src="/icons/remove.svg" alt={t('common.label.videoPlaceholder')} width={12} height={12} />
           </button>
         ) : null}
       </div>
@@ -109,7 +109,7 @@ export const VideoProgress = ({ video, onRemove }: VideoProgressProps) => {
             onClick={handleDownload}
             title={t('common.label.downloadFile')}
           >
-            <Image src="/icons/download.svg" alt={t('common.label.videoPlaceholder')} width={24} height={24} loading="lazy" />
+            <Image src="/icons/download.svg" alt={t('common.label.videoPlaceholder')} width={24} height={24} />
           </button>
         ) : null}
         {/* ✅ 只在准备状态（ready）显示删除按钮，一旦开始读取就不能删除 */}
@@ -120,7 +120,7 @@ export const VideoProgress = ({ video, onRemove }: VideoProgressProps) => {
             onClick={() => onRemove(video.id)}
             aria-label={t('common.label.removeVideo')}
           >
-            <Image src="/icons/remove.svg" alt={t('common.label.videoPlaceholder')} width={12} height={12} loading="lazy" />
+            <Image src="/icons/remove.svg" alt={t('common.label.videoPlaceholder')} width={12} height={12} />
           </button>
         ) : null}
       </div>
@@ -172,7 +172,7 @@ export const VideoDownload = ({ video }: VideoDownloadProps) => {
             onClick={handleDownload}
             title={t('common.label.downloadFile')}
           >
-            <Image src="/icons/download.svg" alt={t('common.label.videoPlaceholder')} width={24} height={24} loading="lazy" />
+            <Image src="/icons/download.svg" alt={t('common.label.videoPlaceholder')} width={24} height={24} />
           </button>
         )}
       </div>

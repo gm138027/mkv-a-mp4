@@ -92,7 +92,7 @@ export const StageRenderer = ({
       return (
         <button className="primary-button" disabled type="button">
           {t('common.button.downloadAll')}
-          <Image src="/icons/next.svg" alt="" width={20} height={20} loading="lazy" />
+          <Image src="/icons/next.svg" alt="" width={20} height={20} />
         </button>
       );
     }
@@ -104,7 +104,7 @@ export const StageRenderer = ({
         onClick={handleDownloadAll}
       >
         {t('common.button.downloadAll')}
-        <Image src="/icons/next.svg" alt="" width={20} height={20} loading="lazy" />
+        <Image src="/icons/next.svg" alt="" width={20} height={20} />
       </button>
     );
   };
@@ -130,14 +130,14 @@ export const StageRenderer = ({
           <ButtonContainer
             leftButton={
               <button className="secondary-button" type="button" onClick={onAddMore}>
-                <Image src="/icons/file.svg" alt="" width={30} height={30} loading="lazy" />
+                <Image src="/icons/file.svg" alt="" width={30} height={30} />
                 {t('common.button.addMore')}
               </button>
             }
             rightButton={
               <button className="primary-button" type="button" onClick={onConvert}>
                 {t('common.button.convert')}
-                <Image src="/icons/next.svg" alt="" width={20} height={20} loading="lazy" />
+                <Image src="/icons/next.svg" alt="" width={20} height={20} />
               </button>
             }
           />
@@ -161,7 +161,7 @@ export const StageRenderer = ({
           <ButtonContainer
             leftButton={
               <button className="secondary-button" type="button" onClick={onConvertMore}>
-                <Image src="/icons/file.svg" alt="" width={30} height={30} loading="lazy" />
+                <Image src="/icons/file.svg" alt="" width={30} height={30} />
                 {t('common.button.convertMore')}
               </button>
             }
@@ -185,7 +185,7 @@ export const StageRenderer = ({
           <ButtonContainer
             leftButton={
               <button className="secondary-button" type="button" onClick={onConvertMore}>
-                <Image src="/icons/file.svg" alt="" width={30} height={30} loading="lazy" />
+                <Image src="/icons/file.svg" alt="" width={30} height={30} />
                 {t('common.button.convertMore')}
               </button>
             }

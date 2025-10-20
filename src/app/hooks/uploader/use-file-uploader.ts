@@ -8,7 +8,7 @@
  * - 使用 ffmpeg.wasm 替代 API 调用
  */
 
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { StageAction } from '@/app/state';
 import type { AdvancedSettings } from '@/app/components/advanced-settings/types';
 import type { ActiveTask } from './types';
@@ -19,6 +19,21 @@ export const useFileUploader = (
   pendingFiles: Map<string, File>
 ) => {
   const [activeTasks, setActiveTasks] = useState<Map<string, ActiveTask>>(new Map());
+  const objectUrlsRef = useRef<Map<string, string>>(new Map());
+
+  const revokeObjectUrl = useCallback((videoId: string) => {
+    const url = objectUrlsRef.current.get(videoId);
+    if (!url) {
+      return;
+    }
+    URL.revokeObjectURL(url);
+    objectUrlsRef.current.delete(videoId);
+  }, []);
+
+  const revokeAllObjectUrls = useCallback(() => {
+    objectUrlsRef.current.forEach((url) => URL.revokeObjectURL(url));
+    objectUrlsRef.current.clear();
+  }, []);
 
   /**
    * 浏览器端转换单个文件（使用 ffmpeg.wasm）
@@ -91,6 +106,11 @@ export const useFileUploader = (
 
         console.log(`[Browser Convert] 转换完成: ${file.name}`);
 
+        // 释放旧的 Object URL（如果存在），避免重复引用
+        revokeObjectUrl(videoId);
+        const objectUrl = URL.createObjectURL(outputBlob);
+        objectUrlsRef.current.set(videoId, objectUrl);
+
         // 阶段3：转换完成
         dispatch({
           type: 'UPDATE_VIDEO',
@@ -98,7 +118,7 @@ export const useFileUploader = (
           patch: { 
             state: 'completed', 
             progress: 100,
-            downloadUrl: URL.createObjectURL(outputBlob),
+            downloadUrl: objectUrl,
           },
         });
 
@@ -140,7 +160,7 @@ export const useFileUploader = (
         throw err;
       }
     },
-    [dispatch]
+    [dispatch, revokeObjectUrl]
   );
 
   /**
@@ -176,10 +196,19 @@ export const useFileUploader = (
     [dispatch, pendingFiles, uploadSingleFile]
   );
 
+  useEffect(() => {
+    return () => {
+      objectUrlsRef.current.forEach((url) => URL.revokeObjectURL(url));
+      objectUrlsRef.current.clear();
+    };
+  }, []);
+
   return {
     activeTasks,
     setActiveTasks,
     uploadSingleFile,
     startUpload,
+    revokeObjectUrl,
+    revokeAllObjectUrls,
   };
 };

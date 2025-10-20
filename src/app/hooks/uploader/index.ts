@@ -33,32 +33,40 @@ export const useUploader = (state: StageState, dispatch: (action: StageAction) =
   );
 
   // 文件上传
-  const fileUploader = useFileUploader(dispatch, pendingFiles);
+  const {
+    startUpload,
+    activeTasks,
+    setActiveTasks,
+    revokeObjectUrl,
+    revokeAllObjectUrls,
+  } = useFileUploader(dispatch, pendingFiles);
 
   // 任务轮询
-  useTaskPoller(state, dispatch, fileUploader.activeTasks, fileUploader.setActiveTasks);
+  useTaskPoller(state, dispatch, activeTasks, setActiveTasks);
 
   // 重置内部状态
   const resetInternal = useCallback(() => {
     setPendingFiles(new Map());
-    fileUploader.setActiveTasks(new Map());
-  }, [fileUploader]);
+    setActiveTasks(new Map());
+    revokeAllObjectUrls();
+  }, [revokeAllObjectUrls, setActiveTasks]);
 
   // 从 pendingFiles 中移除单个文件
   const removePendingFile = useCallback((videoId: string) => {
+    revokeObjectUrl(videoId);
     setPendingFiles((prev) => {
       const next = new Map(prev);
       next.delete(videoId);
       return next;
     });
-  }, []);
+  }, [revokeObjectUrl]);
 
   return {
     setInputRef: filePicker.setInputRef,
     triggerFilePicker: filePicker.triggerFilePicker,
     handleFileSelected,
-    startUpload: fileUploader.startUpload,
-    activeTasks: fileUploader.activeTasks,
+    startUpload,
+    activeTasks,
     resetInternal,
     removePendingFile,
   };

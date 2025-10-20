@@ -2,60 +2,49 @@ import { cleanupExpiredTasks } from './cleanup';
 import { CLEANUP_INTERVAL_MINUTES } from '@/lib/config';
 
 /**
- * 定时清理服务类
+ * Periodic cleanup scheduler.
+ * Responsible for running background sweeps that delete expired artefacts.
  */
 class CleanupScheduler {
   private intervalId: NodeJS.Timeout | null = null;
   private isRunning = false;
 
-  /**
-   * 启动定时清理服务
-   */
   start() {
     if (this.isRunning) {
-      console.log('清理调度器已在运行');
+      console.log('[cleanup] scheduler already running');
       return;
     }
 
-    console.log(`启动清理调度器，间隔: ${CLEANUP_INTERVAL_MINUTES} 分钟`);
+    console.log(`[cleanup] starting scheduler (interval: ${CLEANUP_INTERVAL_MINUTES} minutes)`);
     this.isRunning = true;
 
-    // 立即执行一次清理
-    this.runCleanup();
+    // Kick off an immediate sweep so the first cycle happens without delay.
+    void this.runCleanup();
 
-    // 设置定时任务
     this.intervalId = setInterval(() => {
-      this.runCleanup();
+      void this.runCleanup();
     }, CLEANUP_INTERVAL_MINUTES * 60 * 1000);
   }
 
-  /**
-   * 停止定时清理服务
-   */
   stop() {
     if (this.intervalId) {
       clearInterval(this.intervalId);
       this.intervalId = null;
     }
+
     this.isRunning = false;
-    console.log('清理调度器已停止');
+    console.log('[cleanup] scheduler stopped');
   }
 
-  /**
-   * 执行清理任务
-   */
   private async runCleanup() {
     try {
-      console.log('开始执行定时清理任务...');
+      console.log('[cleanup] running scheduled sweep');
       await cleanupExpiredTasks();
     } catch (error) {
-      console.error('定时清理任务执行失败:', error);
+      console.error('[cleanup] scheduled sweep failed', error);
     }
   }
 
-  /**
-   * 获取调度器状态
-   */
   getStatus() {
     return {
       isRunning: this.isRunning,
@@ -64,30 +53,31 @@ class CleanupScheduler {
   }
 }
 
-// 创建全局实例
+// Singleton instance shared across the process.
 export const cleanupScheduler = new CleanupScheduler();
 
-/**
- * 在应用启动时初始化清理调度器
- */
-export const initializeCleanupScheduler = () => {
-  // 只在生产环境或明确启用时启动
-  const shouldStart = process.env.NODE_ENV === 'production' || 
-                     process.env.ENABLE_CLEANUP_SCHEDULER === 'true';
-  
-  if (shouldStart) {
-    cleanupScheduler.start();
-    
-    // 优雅关闭处理
-    const gracefulShutdown = () => {
-      console.log('正在关闭清理调度器...');
-      cleanupScheduler.stop();
-      process.exit(0);
-    };
+let shutdownHooksRegistered = false;
 
-    process.on('SIGTERM', gracefulShutdown);
-    process.on('SIGINT', gracefulShutdown);
-  } else {
-    console.log('清理调度器未启用 (设置 ENABLE_CLEANUP_SCHEDULER=true 启用)');
+export const initializeCleanupScheduler = () => {
+  const shouldStart = process.env.ENABLE_CLEANUP_SCHEDULER === 'true';
+
+  if (!shouldStart) {
+    console.log('[cleanup] scheduler disabled (set ENABLE_CLEANUP_SCHEDULER=true to enable)');
+    return;
   }
+
+  cleanupScheduler.start();
+
+  if (shutdownHooksRegistered) {
+    return;
+  }
+
+  const gracefulShutdown = () => {
+    console.log('[cleanup] shutting down scheduler');
+    cleanupScheduler.stop();
+  };
+
+  process.on('SIGTERM', gracefulShutdown);
+  process.on('SIGINT', gracefulShutdown);
+  shutdownHooksRegistered = true;
 };
