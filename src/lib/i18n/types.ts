@@ -172,6 +172,21 @@ export interface Messages {
     leftAdLabel: string;
     rightAdLabel: string;
   };
+  offline: {
+    title: string;
+    description: string;
+    actions: {
+      retry: string;
+      goHome: string;
+    };
+    tipsTitle: string;
+    tips: {
+      tip1: string;
+      tip2: string;
+      tip3: string;
+      tip4: string;
+    };
+  };
   browserConverter: {
     unsupportedBrowser: string;
     unsupportedDescription1: string;

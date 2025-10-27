@@ -134,6 +134,21 @@
     "leftAdLabel": "左側の広告スペース",
     "rightAdLabel": "右側の広告スペース"
   },
+  "offline": {
+    "title": "オフラインです",
+    "description": "インターネット接続が失われたようです。このページを利用するには接続が必要です。",
+    "actions": {
+      "retry": "再読み込み",
+      "goHome": "ホームへ戻る"
+    },
+    "tipsTitle": "再接続するまでにできること:",
+    "tips": {
+      "tip1": "インターネット接続を確認してください",
+      "tip2": "機内モードをオフにしてください",
+      "tip3": "ルーターやモデムの電源を入れ直してください",
+      "tip4": "電波状況の良い場所へ移動してください"
+    }
+  },
   "browserConverter": {
     "unsupportedBrowser": "ブラウザがサポートされていません",
     "unsupportedDescription1": "ご利用のブラウザは WebAssembly または SharedArrayBuffer に対応していません。",

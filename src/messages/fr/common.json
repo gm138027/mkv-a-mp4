@@ -134,6 +134,21 @@
     "leftAdLabel": "Espace publicitaire gauche",
     "rightAdLabel": "Espace publicitaire droit"
   },
+  "offline": {
+    "title": "Vous êtes hors ligne",
+    "description": "Il semble que vous ayez perdu votre connexion internet. Cette page nécessite une connexion active pour fonctionner correctement.",
+    "actions": {
+      "retry": "Réessayer",
+      "goHome": "Retour à l’accueil"
+    },
+    "tipsTitle": "En attendant de retrouver la connexion :",
+    "tips": {
+      "tip1": "Vérifiez votre connexion internet",
+      "tip2": "Désactivez le mode avion s’il est activé",
+      "tip3": "Redémarrez votre routeur ou votre modem",
+      "tip4": "Déplacez-vous vers une zone avec un meilleur signal"
+    }
+  },
   "browserConverter": {
     "unsupportedBrowser": "Navigateur non pris en charge",
     "unsupportedDescription1": "Votre navigateur ne prend pas en charge WebAssembly ou SharedArrayBuffer.",

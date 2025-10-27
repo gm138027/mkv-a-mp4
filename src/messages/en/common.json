@@ -133,6 +133,21 @@
     "leftAdLabel": "Left advertisement space",
     "rightAdLabel": "Right advertisement space"
   },
+  "offline": {
+    "title": "You’re offline",
+    "description": "It looks like you’ve lost your internet connection. This page needs an active connection to work properly.",
+    "actions": {
+      "retry": "Try again",
+      "goHome": "Go home"
+    },
+    "tipsTitle": "While you get back online:",
+    "tips": {
+      "tip1": "Check your internet connection",
+      "tip2": "Disable airplane mode if it’s on",
+      "tip3": "Restart your router or modem",
+      "tip4": "Move to an area with better signal"
+    }
+  },
   "browserConverter": {
     "unsupportedBrowser": "Browser Not Supported",
     "unsupportedDescription1": "Your browser does not support WebAssembly or SharedArrayBuffer.",

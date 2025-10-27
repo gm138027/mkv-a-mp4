@@ -134,6 +134,21 @@
     "leftAdLabel": "Linke Werbefläche",
     "rightAdLabel": "Rechte Werbefläche"
   },
+  "offline": {
+    "title": "Du bist offline",
+    "description": "Es sieht so aus, als hättest du die Internetverbindung verloren. Für diese Seite wird eine aktive Verbindung benötigt.",
+    "actions": {
+      "retry": "Erneut versuchen",
+      "goHome": "Zur Startseite"
+    },
+    "tipsTitle": "Während du die Verbindung wiederherstellst:",
+    "tips": {
+      "tip1": "Prüfe deine Internetverbindung",
+      "tip2": "Deaktiviere den Flugmodus, falls aktiviert",
+      "tip3": "Starte deinen Router oder dein Modem neu",
+      "tip4": "Wechsle an einen Ort mit besserem Empfang"
+    }
+  },
   "browserConverter": {
     "unsupportedBrowser": "Browser nicht unterstützt",
     "unsupportedDescription1": "Ihr Browser unterstützt WebAssembly oder SharedArrayBuffer nicht.",

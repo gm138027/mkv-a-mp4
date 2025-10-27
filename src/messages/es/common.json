@@ -134,6 +134,21 @@
     "leftAdLabel": "Espacio publicitario izquierdo",
     "rightAdLabel": "Espacio publicitario derecho"
   },
+  "offline": {
+    "title": "Sin conexión",
+    "description": "Parece que has perdido la conexión a internet. Esta página necesita conexión activa para funcionar correctamente.",
+    "actions": {
+      "retry": "Reintentar",
+      "goHome": "Volver al inicio"
+    },
+    "tipsTitle": "Mientras recuperas la conexión:",
+    "tips": {
+      "tip1": "Comprueba tu conexión a internet",
+      "tip2": "Desactiva el modo avión si está activado",
+      "tip3": "Revisa tu router o módem",
+      "tip4": "Busca un lugar con mejor señal"
+    }
+  },
   "browserConverter": {
     "unsupportedBrowser": "Navegador no compatible",
     "unsupportedDescription1": "Tu navegador no admite WebAssembly o SharedArrayBuffer.",

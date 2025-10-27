@@ -1,14 +1,11 @@
-﻿import type { Metadata } from 'next';
-import type { Locale, Messages } from '@/lib/i18n/types';
+import type { Metadata } from 'next';
+import type { Locale } from '@/lib/i18n/types';
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '@/lib/i18n/types';
 import { redirect } from 'next/navigation';
 import { SiteShell } from '@/app/components/SiteShell';
-import esMessages from '@/messages/es/common.json';
-import enMessages from '@/messages/en/common.json';
-import frMessages from '@/messages/fr/common.json';
-import deMessages from '@/messages/de/common.json';
-import jaMessages from '@/messages/ja/common.json';
+import { loadCommonMessages } from '@/lib/i18n/server';
 
-const SUPPORTED_LOCALES: Locale[] = ['es', 'en', 'ja', 'fr', 'de'];
+const SUPPORTED_CODES = new Set<Locale>(SUPPORTED_LOCALES.map((item) => item.code as Locale));
 
 const META_MAP: Record<Locale, { title: string; description: string }> = {
   es: {
@@ -38,23 +35,15 @@ const META_MAP: Record<Locale, { title: string; description: string }> = {
   },
 };
 
-const MESSAGE_MAP: Record<Locale, Messages> = {
-  es: esMessages as Messages,
-  en: enMessages as Messages,
-  fr: frMessages as Messages,
-  de: deMessages as Messages,
-  ja: jaMessages as Messages,
-};
-
 const toLocale = (value: string): Locale => {
-  return SUPPORTED_LOCALES.includes(value as Locale) ? (value as Locale) : 'es';
+  return SUPPORTED_CODES.has(value as Locale) ? (value as Locale) : DEFAULT_LOCALE;
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const safeLocale = toLocale(locale);
   const meta = META_MAP[safeLocale];
-  const canonical = safeLocale === 'es' ? '/' : `/${safeLocale}`;
+  const canonical = safeLocale === DEFAULT_LOCALE ? '/' : `/${safeLocale}`;
 
   return {
     title: meta.title,
@@ -104,15 +93,17 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
   const safeLocale = toLocale(locale);
-  const messages = MESSAGE_MAP[safeLocale];
 
-  if (!messages) {
+  try {
+    const { locale: resolvedLocale, messages } = await loadCommonMessages(safeLocale);
+
+    return (
+      <SiteShell locale={resolvedLocale} messages={messages}>
+        {children}
+      </SiteShell>
+    );
+  } catch (error) {
+    console.error(`[i18n] Failed to load locale "${safeLocale}"`, error);
     redirect('/');
   }
-
-  return (
-    <SiteShell locale={safeLocale} messages={messages}>
-      {children}
-    </SiteShell>
-  );
 }
