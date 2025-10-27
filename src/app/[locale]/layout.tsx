@@ -1,53 +1,70 @@
-import type { Metadata } from 'next';
-import { type Locale } from '@/lib/i18n/types';
-import LocaleSync from './LocaleSync';
+﻿import type { Metadata } from 'next';
+import type { Locale, Messages } from '@/lib/i18n/types';
+import { redirect } from 'next/navigation';
+import { SiteShell } from '@/app/components/SiteShell';
+import esMessages from '@/messages/es/common.json';
+import enMessages from '@/messages/en/common.json';
+import frMessages from '@/messages/fr/common.json';
+import deMessages from '@/messages/de/common.json';
+import jaMessages from '@/messages/ja/common.json';
 
-// 每个语言的metadata配置
-const localeMetadata: Record<Locale, { title: string; description: string }> = {
+const SUPPORTED_LOCALES: Locale[] = ['es', 'en', 'ja', 'fr', 'de'];
+
+const META_MAP: Record<Locale, { title: string; description: string }> = {
   es: {
-    title: 'Convertidor MKV a MP4 gratis en línea',
-    description: 'Convierte en el navegador conservando calidad, audio y subtítulos, sin subir vídeos a servidores. Ideal para quienes desean reproducir MKV en el móvil o Smart TV, publicarlos en redes sociales o compartirlos fácilmente con otras personas.',
+    title: 'Convertidor MKV a MP4 gratis en linea',
+    description:
+      'Convierte videos MKV a MP4 en el navegador conservando calidad, audio y subtitulos. No se suben archivos.',
   },
   en: {
     title: 'Free Online MKV to MP4 Converter',
-    description: 'Convert MKV to MP4 in your browser while preserving quality, audio, and subtitles without uploading videos to servers. Perfect for playing MKV on mobile devices or Smart TVs, sharing on social media, or easily distributing to others.',
+    description:
+      'Convert MKV to MP4 in your browser while keeping quality, audio, and subtitles. No upload required.',
   },
   ja: {
-    title: 'mkv mp4 変換 無料オンラインサイト | 無劣化コンバーター',
-    description: 'ブラウザだけで mkv を mp4 に 変換。mkv mp4 変換 無劣化 に対応した無料オンラインツールで、フリーソフト不要・Windows/Mac/スマホ対応・OBS 録画 mp4 への出力も安全に行えます。',
+    title: 'MKV to MP4 converter online',
+    description:
+      'Convert mkv files to mp4 directly in the browser. Fast, secure, and keeps audio and subtitles.',
   },
   fr: {
-    title: 'Convertisseur MKV en MP4 gratuit en ligne',
-    description: 'Convertissez MKV en MP4 dans votre navigateur en conservant la qualité, l\'audio et les sous-titres sans télécharger de vidéos sur les serveurs. Idéal pour lire MKV sur mobile ou Smart TV, partager sur les réseaux sociaux.',
+    title: 'Convertisseur MKV vers MP4 en ligne',
+    description:
+      'Convertissez vos fichiers MKV en MP4 dans le navigateur en conservant la qualite, l audio et les sous-titres.',
   },
   de: {
-    title: 'Kostenloser Online MKV zu MP4 Konverter',
-    description: 'Konvertieren Sie MKV zu MP4 in Ihrem Browser unter Beibehaltung von Qualität, Audio und Untertiteln ohne Videos auf Server hochzuladen. Perfekt zum Abspielen von MKV auf Mobilgeräten oder Smart TVs.',
+    title: 'MKV zu MP4 Konverter online',
+    description:
+      'Wandeln Sie MKV-Dateien im Browser nach MP4 um und behalten Sie Qualitat, Audio und Untertitel.',
   },
 };
 
+const MESSAGE_MAP: Record<Locale, Messages> = {
+  es: esMessages as Messages,
+  en: enMessages as Messages,
+  fr: frMessages as Messages,
+  de: deMessages as Messages,
+  ja: jaMessages as Messages,
+};
+
+const toLocale = (value: string): Locale => {
+  return SUPPORTED_LOCALES.includes(value as Locale) ? (value as Locale) : 'es';
+};
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params as { locale: Locale };
-  const isDefault = locale === 'es';
-  const canonical = isDefault ? '/' : `/${locale}`;
-  
-  // 获取对应语言的metadata
-  const meta = localeMetadata[locale] || localeMetadata.es;
-  
-  // 当前URL
-  const url = `https://mkvamp4.com${canonical}`;
+  const { locale } = await params;
+  const safeLocale = toLocale(locale);
+  const meta = META_MAP[safeLocale];
+  const canonical = safeLocale === 'es' ? '/' : `/${safeLocale}`;
 
   return {
     title: meta.title,
     description: meta.description,
-    
-    // Open Graph
     openGraph: {
       title: meta.title,
       description: meta.description,
-      url: url,
+      url: `https://mkvamp4.com${canonical}`,
       siteName: 'MKV to MP4 Converter',
-      locale: locale,
+      locale: safeLocale,
       type: 'website',
       images: [
         {
@@ -55,18 +72,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
           width: 512,
           height: 512,
           alt: 'MKV to MP4 Converter Logo',
-        }
+        },
       ],
     },
-    
-    // Twitter Card
     twitter: {
       card: 'summary',
       title: meta.title,
       description: meta.description,
       images: ['https://mkvamp4.com/logo/android-chrome-512x512.png'],
     },
-    
     alternates: {
       canonical,
       languages: {
@@ -88,12 +102,17 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params as { locale: Locale };
+  const { locale } = await params;
+  const safeLocale = toLocale(locale);
+  const messages = MESSAGE_MAP[safeLocale];
+
+  if (!messages) {
+    redirect('/');
+  }
+
   return (
-    <>
-      {/* 同步运行时 Context 语言，不改变现有内容结构 */}
-      <LocaleSync locale={locale} />
+    <SiteShell locale={safeLocale} messages={messages}>
       {children}
-    </>
+    </SiteShell>
   );
 }

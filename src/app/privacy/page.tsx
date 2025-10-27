@@ -1,61 +1,56 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import { headers, cookies } from 'next/headers';
-import { DEFAULT_LOCALE, type Locale, SUPPORTED_LOCALES } from '@/lib/i18n/types';
+import type { Locale } from '@/lib/i18n/types';
+import { resolveLocale, loadCommonMessages } from '@/lib/i18n/server';
 import { LegalPage } from '@/app/components/legal/LegalPage';
-import { loadPrivacyMessages, loadCommonMessages } from '@/app/components/legal/privacy-helpers';
+import { loadPrivacyMessages } from '@/app/components/legal/privacy-helpers';
+import { SiteShell } from '@/app/components/SiteShell';
 
-// SEO metadata
 export const metadata: Metadata = {
-  title: 'Política de Privacidad - MKV a MP4 Conversor',
+  title: 'Politica de Privacidad - MKV a MP4 Conversor',
   description:
-    'Política de privacidad del convertidor MKV a MP4. Información sobre cómo procesamos y protegemos tus datos.',
+    'Politica de privacidad del conversor MKV a MP4. Informacion sobre como procesamos y protegemos tus datos.',
   robots: 'index, follow',
   alternates: {
     canonical: '/privacy',
   },
 };
 
-const LOCALE_SET = new Set<Locale>(SUPPORTED_LOCALES.map(({ code }) => code));
-
 const detectLocale = async (): Promise<Locale> => {
   const cookieStore = await cookies();
-  const cookie = cookieStore.get('preferred-locale');
-  const cookieLocale = cookie?.value;
-  if (cookieLocale && LOCALE_SET.has(cookieLocale as Locale)) {
-    return cookieLocale as Locale;
+  const cookieLocale = cookieStore.get('preferred-locale')?.value;
+  if (cookieLocale) {
+    return resolveLocale(cookieLocale);
   }
 
   const headerList = await headers();
   const acceptLanguage = headerList.get('accept-language');
-
-  if (acceptLanguage) {
-    const primary = acceptLanguage.split(',')[0]?.split('-')[0]?.toLowerCase();
-    if (primary && LOCALE_SET.has(primary as Locale)) {
-      return primary as Locale;
-    }
-  }
-
-  return DEFAULT_LOCALE;
+  const primary = acceptLanguage?.split(',')[0]?.split('-')[0]?.toLowerCase();
+  return resolveLocale(primary ?? undefined);
 };
 
 export default async function PrivacyPage() {
-  const locale = await detectLocale();
-  const [privacy, common] = await Promise.all([
-    loadPrivacyMessages(locale),
-    loadCommonMessages(locale),
+  const requestedLocale = await detectLocale();
+  const [{ locale, messages }, privacy] = await Promise.all([
+    loadCommonMessages(requestedLocale),
+    loadPrivacyMessages(requestedLocale),
   ]);
 
+  const backHref = locale === 'es' ? '/' : `/${locale}`;
+
   return (
-    <div className="privacy-page">
-      <div className="privacy-page__container">
-        <LegalPage
-          data={privacy}
-          backLabel={common.navigation.backToHome}
-          backHref="/"
-          classPrefix="privacy-policy"
-          listItemClassName="privacy-policy__list-item"
-        />
+    <SiteShell locale={locale} messages={messages}>
+      <div className="privacy-page">
+        <div className="privacy-page__container">
+          <LegalPage
+            data={privacy}
+            backLabel={messages.navigation.backToHome}
+            backHref={backHref}
+            classPrefix="privacy-policy"
+            listItemClassName="privacy-policy__list-item"
+          />
+        </div>
       </div>
-    </div>
+    </SiteShell>
   );
 }
