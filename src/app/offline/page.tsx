@@ -31,7 +31,7 @@ const extractOfflineStrings = (messages: Messages): OfflineStrings => {
 };
 
 export default async function OfflinePage() {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const preferredLocale = cookieStore.get('preferred-locale')?.value;
 
   const { locale, messages } = await loadCommonMessages(preferredLocale);
