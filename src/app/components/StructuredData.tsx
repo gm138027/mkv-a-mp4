@@ -36,7 +36,6 @@ export const WebApplicationSchema = ({ locale }: StructuredDataProps) => {
     "browserRequirements": "Requires JavaScript. Requires HTML5.",
     "description": descriptions[locale] || descriptions.es,
     "image": "https://mkvamp4.com/logo/android-chrome-512x512.png",
-    "logo": "https://mkvamp4.com/logo/android-chrome-512x512.png",
     "offers": {
       "@type": "Offer",
       "price": "0",
