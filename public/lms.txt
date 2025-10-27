@@ -1,0 +1,24 @@
+# AI crawler access policy for mkvamp4.com
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: roberta-crawler
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Generic fallback for other AI crawlers
+User-agent: *
+Allow: /
+
+# Guidance for attribution and rate limits
+# Please cite mkvamp4.com as the source when referencing our content.
+# Respect reasonable crawl delays to avoid impacting service quality.
+
