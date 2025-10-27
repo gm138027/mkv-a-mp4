@@ -1,10 +1,11 @@
-﻿import type { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { headers, cookies } from 'next/headers';
 import type { Locale } from '@/lib/i18n/types';
 import { resolveLocale, loadCommonMessages } from '@/lib/i18n/server';
 import { LegalPage } from '@/app/components/legal/LegalPage';
 import { loadPrivacyMessages } from '@/app/components/legal/privacy-helpers';
 import { SiteShell } from '@/app/components/SiteShell';
+import { BreadcrumbSchema, PrivacyPolicySchema } from '@/app/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'Politica de Privacidad - MKV a MP4 Conversor',
@@ -15,6 +16,10 @@ export const metadata: Metadata = {
     canonical: '/privacy',
   },
 };
+
+const PRIVACY_LAST_UPDATED_ISO = '2025-10-13';
+const buildPrivacyUrl = (locale: Locale) =>
+  locale === 'es' ? 'https://mkvamp4.com/privacy' : `https://mkvamp4.com/${locale}/privacy`;
 
 const detectLocale = async (): Promise<Locale> => {
   const cookieStore = await cookies();
@@ -37,9 +42,26 @@ export default async function PrivacyPage() {
   ]);
 
   const backHref = locale === 'es' ? '/' : `/${locale}`;
+  const absoluteUrl = buildPrivacyUrl(locale);
 
   return (
     <SiteShell locale={locale} messages={messages}>
+      <PrivacyPolicySchema
+        locale={locale}
+        title={privacy.meta.title}
+        description={privacy.meta.description}
+        url={absoluteUrl}
+        lastReviewed={PRIVACY_LAST_UPDATED_ISO}
+      />
+      <BreadcrumbSchema
+        locale={locale}
+        items={[
+          {
+            name: privacy.header.title,
+            url: absoluteUrl,
+          },
+        ]}
+      />
       <div className="privacy-page">
         <div className="privacy-page__container">
           <LegalPage

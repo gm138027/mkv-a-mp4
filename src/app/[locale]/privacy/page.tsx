@@ -1,6 +1,12 @@
 import type { Metadata } from 'next';
 import { LegalPage } from '@/app/components/legal/LegalPage';
 import { loadPrivacyMessages, loadCommonMessages } from '@/app/components/legal/privacy-helpers';
+import { BreadcrumbSchema, PrivacyPolicySchema } from '@/app/components/StructuredData';
+
+const PRIVACY_LAST_UPDATED_ISO = '2025-10-13';
+
+const buildPrivacyUrl = (locale: string) =>
+  locale === 'es' ? 'https://mkvamp4.com/privacy' : `https://mkvamp4.com/${locale}/privacy`;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -40,22 +46,38 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function LocalePrivacyPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const [privacy, common] = await Promise.all([
-    loadPrivacyMessages(locale),
-    loadCommonMessages(locale),
-  ]);
+  const [privacy, common] = await Promise.all([loadPrivacyMessages(locale), loadCommonMessages(locale)]);
+  const absoluteUrl = buildPrivacyUrl(locale);
 
   return (
-    <div className="privacy-page">
-      <div className="privacy-page__container">
-        <LegalPage
-          data={privacy}
-          backLabel={common.navigation.backToHome}
-          backHref={locale === 'es' ? '/' : `/${locale}`}
-          classPrefix="privacy-policy"
-          listItemClassName="privacy-policy__list-item"
-        />
+    <>
+      <PrivacyPolicySchema
+        locale={locale}
+        title={privacy.meta.title}
+        description={privacy.meta.description}
+        url={absoluteUrl}
+        lastReviewed={PRIVACY_LAST_UPDATED_ISO}
+      />
+      <BreadcrumbSchema
+        locale={locale}
+        items={[
+          {
+            name: privacy.header.title,
+            url: absoluteUrl,
+          },
+        ]}
+      />
+      <div className="privacy-page">
+        <div className="privacy-page__container">
+          <LegalPage
+            data={privacy}
+            backLabel={common.navigation.backToHome}
+            backHref={locale === 'es' ? '/' : `/${locale}`}
+            classPrefix="privacy-policy"
+            listItemClassName="privacy-policy__list-item"
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 }

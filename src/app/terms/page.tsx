@@ -1,10 +1,11 @@
-﻿import type { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { headers, cookies } from 'next/headers';
 import type { Locale } from '@/lib/i18n/types';
 import { resolveLocale, loadCommonMessages } from '@/lib/i18n/server';
 import { LegalPage } from '@/app/components/legal/LegalPage';
 import { loadTermsMessages } from '@/app/components/legal/terms-helpers';
 import { SiteShell } from '@/app/components/SiteShell';
+import { BreadcrumbSchema, TermsOfServiceSchema } from '@/app/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'Terminos de Servicio - MKV a MP4 Conversor',
@@ -15,6 +16,10 @@ export const metadata: Metadata = {
     canonical: '/terms',
   },
 };
+
+const TERMS_LAST_UPDATED_ISO = '2025-10-13';
+const buildTermsUrl = (locale: Locale) =>
+  locale === 'es' ? 'https://mkvamp4.com/terms' : `https://mkvamp4.com/${locale}/terms`;
 
 const detectLocale = async (): Promise<Locale> => {
   const cookieStore = await cookies();
@@ -37,9 +42,26 @@ export default async function TermsPage() {
   ]);
 
   const backHref = locale === 'es' ? '/' : `/${locale}`;
+  const absoluteUrl = buildTermsUrl(locale);
 
   return (
     <SiteShell locale={locale} messages={messages}>
+      <TermsOfServiceSchema
+        locale={locale}
+        title={terms.meta.title}
+        description={terms.meta.description}
+        url={absoluteUrl}
+        lastReviewed={TERMS_LAST_UPDATED_ISO}
+      />
+      <BreadcrumbSchema
+        locale={locale}
+        items={[
+          {
+            name: terms.header.title,
+            url: absoluteUrl,
+          },
+        ]}
+      />
       <div className="terms-page">
         <div className="terms-page__container">
           <LegalPage
