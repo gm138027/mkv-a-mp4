@@ -1,18 +1,18 @@
-import { TermsOfService } from '@/app/components/legal/TermsOfService';
 import type { Metadata } from 'next';
+import { LegalPage } from '@/app/components/legal/LegalPage';
+import { loadTermsMessages, loadCommonMessages } from '@/app/components/legal/terms-helpers';
 
-// 动态生成每个语言的 metadata
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const messages = await import(`@/messages/${locale}/terms.json`);
-  const meta = messages.default.meta;
+  const messages = await loadTermsMessages(locale);
+  const meta = messages.meta;
 
   return {
     title: meta.title,
     description: meta.description,
     robots: 'index, follow',
     alternates: {
-      canonical: `/${locale === 'es' ? '' : locale + '/'}terms`,
+      canonical: `/${locale === 'es' ? '' : `${locale}/`}terms`,
       languages: {
         es: '/terms',
         en: '/en/terms',
@@ -25,9 +25,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title: meta.title,
       description: meta.description,
-      url: `https://mkvamp4.com/${locale === 'es' ? '' : locale + '/'}terms`,
+      url: `https://mkvamp4.com/${locale === 'es' ? '' : `${locale}/`}terms`,
       siteName: 'MKV to MP4 Converter',
-      locale: locale,
+      locale,
       type: 'website',
     },
     twitter: {
@@ -38,11 +38,23 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-export default function TermsPage() {
+export default async function LocaleTermsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const [terms, common] = await Promise.all([
+    loadTermsMessages(locale),
+    loadCommonMessages(locale),
+  ]);
+
   return (
     <div className="terms-page">
       <div className="terms-page__container">
-        <TermsOfService />
+        <LegalPage
+          data={terms}
+          backLabel={common.navigation.backToHome}
+          backHref={locale === 'es' ? '/' : `/${locale}`}
+          classPrefix="terms-of-service"
+          listItemClassName="terms-of-service__list-item"
+        />
       </div>
     </div>
   );

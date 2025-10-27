@@ -50,17 +50,24 @@ export const LanguageSwitcher = () => {
     trackLanguageChange(locale, newLocale);
     
     changeLocale(newLocale);
+    document.cookie = `preferred-locale=${newLocale}; max-age=${60 * 60 * 24 * 365}; path=/; SameSite=Lax`;
     
     // 获取当前路径
     const currentPath = window.location.pathname;
     
-    // 如果在独立路由页面（privacy, terms），不需要跳转，组件会自动重新加载对应语言
-    if (currentPath === '/privacy' || currentPath === '/terms') {
+    const legalMatch = currentPath.match(/^\/(?:([a-z]{2})\/)?(privacy|terms)(\/.*)?$/);
+    if (legalMatch) {
+      const [, pathLocale, slug, rest] = legalMatch;
+      const target =
+        newLocale === 'es'
+          ? `/${slug}${rest ?? ''}`
+          : `/${newLocale}/${slug}${rest ?? ''}`;
+      router.push(target);
       setIsOpen(false);
       return;
     }
-    
-    // 首页路由需要跳转：es -> '/', 其他 -> '/:locale'
+
+    // 默认：跳转到对应语言的首页
     const target = newLocale === 'es' ? '/' : `/${newLocale}`;
     router.push(target);
     setIsOpen(false);
