@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import '@/lib/init';
 
+import esMessages from '@/messages/es/common.json';
 import { GoogleAnalytics } from '@/app/components/GoogleAnalytics';
 
 const geistSans = Geist({
@@ -19,11 +20,13 @@ const geistMono = Geist_Mono({
   preload: true,
 });
 
+const defaultMeta = esMessages.meta;
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://mkvamp4.com'),
-  title: 'Convertidor MKV a MP4 gratis en línea',
-  description:
-    'Convierte en el navegador conservando calidad, audio y subtítulos, sin subir vídeos a servidores. Ideal para quienes desean reproducir MKV en el móvil o Smart TV, publicarlos en redes sociales o compartirlos fácilmente con otras personas.',
+  title: defaultMeta.title,
+  description: defaultMeta.description,
+  keywords: defaultMeta.keywords,
   icons: {
     icon: [
       { url: '/logo/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
@@ -34,9 +37,8 @@ export const metadata: Metadata = {
   },
   manifest: '/logo/site.webmanifest',
   openGraph: {
-    title: 'Convertidor MKV a MP4 gratis en línea',
-    description:
-      'Convierte en el navegador conservando calidad, audio y subtítulos, sin subir vídeos a servidores. Ideal para quienes desean reproducir MKV en el móvil o Smart TV, publicarlos en redes sociales o compartirlos fácilmente con otras personas.',
+    title: defaultMeta.title,
+    description: defaultMeta.description,
     url: '/',
     siteName: 'MKV to MP4 Converter',
     locale: 'es',
@@ -52,9 +54,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary',
-    title: 'Convertidor MKV a MP4 gratis en línea',
-    description:
-      'Convierte en el navegador conservando calidad, audio y subtítulos, sin subir vídeos a servidores.',
+    title: defaultMeta.title,
+    description: defaultMeta.description,
     images: ['https://mkvamp4.com/logo/android-chrome-512x512.png'],
   },
   alternates: {
@@ -76,14 +77,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang='es'>
       <head>
         <GoogleAnalytics />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <link rel='preconnect' href='https://fonts.googleapis.com' />
+        <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='anonymous' />
+        <link rel='dns-prefetch' href='https://fonts.googleapis.com' />
+        <link rel='dns-prefetch' href='https://fonts.gstatic.com' />
+        <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=5' />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 text-gray-900`}>
         {children}
@@ -91,3 +92,6 @@ export default function RootLayout({
     </html>
   );
 }
+
+
+
