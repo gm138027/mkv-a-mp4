@@ -9,7 +9,6 @@ import { loadTermsMessages } from '@/app/components/legal/terms-helpers';
 import { SiteShell } from '@/app/components/SiteShell';
 import { BreadcrumbSchema, TermsOfServiceSchema } from '@/app/components/StructuredData';
 import { buildAlternates, buildCanonical } from '@/lib/seo/alternates';
-import { buildAlternates, buildCanonical } from '@/lib/seo/alternates';
 
 const TERMS_LAST_UPDATED_ISO = '2025-10-13';
 const buildTermsUrl = (locale: Locale) =>
