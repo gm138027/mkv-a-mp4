@@ -5,6 +5,8 @@ import '@/lib/init';
 
 import esMessages from '@/messages/es/common.json';
 import { GoogleAnalytics } from '@/app/components/GoogleAnalytics';
+import { buildMetadataAlternates } from '@/lib/seo/alternates';
+import { DEFAULT_LOCALE } from '@/lib/i18n/types';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -58,17 +60,7 @@ export const metadata: Metadata = {
     description: defaultMeta.description,
     images: ['https://mkvamp4.com/logo/android-chrome-512x512.png'],
   },
-  alternates: {
-    canonical: '/',
-    languages: {
-      es: '/',
-      en: '/en',
-      ja: '/ja',
-      fr: '/fr',
-      de: '/de',
-      'x-default': '/',
-    },
-  },
+  alternates: buildMetadataAlternates(DEFAULT_LOCALE),
 };
 
 export default function RootLayout({
@@ -92,6 +84,5 @@ export default function RootLayout({
     </html>
   );
 }
-
 
 

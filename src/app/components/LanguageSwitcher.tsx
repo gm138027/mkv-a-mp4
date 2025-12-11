@@ -1,13 +1,11 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useLocale, useTranslation, SUPPORTED_LOCALES, type Locale } from '@/lib/i18n';
-import { useRouter } from 'next/navigation';
 import { useAnalytics } from '@/app/hooks/useAnalytics';
 
-/**
- * 语言旗帜 Emoji 映射
- */
 const LANGUAGE_FLAGS: Record<Locale, string> = {
   es: '🇪🇸',
   en: '🇬🇧',
@@ -22,9 +20,8 @@ export const LanguageSwitcher = () => {
   const { trackLanguageChange } = useAnalytics();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const router = useRouter();
+  const pathname = usePathname();
 
-  // 点击外部关闭下拉菜单
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -41,41 +38,26 @@ export const LanguageSwitcher = () => {
     };
   }, [isOpen]);
 
-  // 当前语言配置
   const currentLanguage = SUPPORTED_LOCALES.find((l) => l.code === locale);
 
-  // 处理语言切换
-  const handleLanguageChange = (newLocale: Locale) => {
-    // 追踪语言切换事件
-    trackLanguageChange(locale, newLocale);
-    
-    changeLocale(newLocale);
-    document.cookie = `preferred-locale=${newLocale}; max-age=${60 * 60 * 24 * 365}; path=/; SameSite=Lax`;
-    
-    // 获取当前路径
-    const currentPath = window.location.pathname;
-    
-    const legalMatch = currentPath.match(/^\/(?:([a-z]{2})\/)?(privacy|terms)(\/.*)?$/);
+  const buildTargetHref = (targetLocale: Locale) => {
+    const legalMatch = pathname.match(/^\/(?:([a-z]{2})\/)?(privacy|terms)(\/.*)?$/);
     if (legalMatch) {
-      const [, pathLocale, slug, rest] = legalMatch;
-      const target =
-        newLocale === 'es'
-          ? `/${slug}${rest ?? ''}`
-          : `/${newLocale}/${slug}${rest ?? ''}`;
-      router.push(target);
-      setIsOpen(false);
-      return;
+      const [, , slug, rest] = legalMatch;
+      return targetLocale === 'es' ? `/${slug}${rest ?? ''}` : `/${targetLocale}/${slug}${rest ?? ''}`;
     }
+    return targetLocale === 'es' ? '/' : `/${targetLocale}`;
+  };
 
-    // 默认：跳转到对应语言的首页
-    const target = newLocale === 'es' ? '/' : `/${newLocale}`;
-    router.push(target);
+  const handleLanguageChange = (targetLocale: Locale) => {
+    trackLanguageChange(locale, targetLocale);
+    changeLocale(targetLocale);
+    document.cookie = `preferred-locale=${targetLocale}; max-age=${60 * 60 * 24 * 365}; path=/; SameSite=Lax`;
     setIsOpen(false);
   };
 
   return (
     <div className="language-switcher" ref={dropdownRef}>
-      {/* 当前语言按钮 */}
       <button
         className="language-switcher__button"
         onClick={() => setIsOpen(!isOpen)}
@@ -83,38 +65,42 @@ export const LanguageSwitcher = () => {
         aria-expanded={isOpen}
         disabled={isLoading}
       >
-        <span className="language-switcher__flag">
-          {LANGUAGE_FLAGS[locale]}
-        </span>
-        <span className="language-switcher__name">
-          {currentLanguage?.nativeName}
-        </span>
-        <span className={`language-switcher__arrow ${isOpen ? 'open' : ''}`}>
-          ▼
-        </span>
+        <span className="language-switcher__flag">{LANGUAGE_FLAGS[locale]}</span>
+        <span className="language-switcher__name">{currentLanguage?.nativeName}</span>
+        <span className={`language-switcher__arrow ${isOpen ? 'open' : ''}`}>▼</span>
       </button>
 
-      {/* 下拉菜单 */}
       {isOpen && (
         <div className="language-switcher__dropdown">
-          {SUPPORTED_LOCALES.map((lang) => (
-            <button
-              key={lang.code}
-              className={`language-switcher__option ${locale === lang.code ? 'active' : ''}`}
-              onClick={() => handleLanguageChange(lang.code)}
-              disabled={locale === lang.code}
-            >
-              <span className="language-switcher__option-flag">
-                {LANGUAGE_FLAGS[lang.code]}
-              </span>
-              <span className="language-switcher__option-name">
-                {lang.nativeName}
-              </span>
-              {locale === lang.code && (
-                <span className="language-switcher__check">✓</span>
-              )}
-            </button>
-          ))}
+          {SUPPORTED_LOCALES.map((lang) => {
+            if (lang.code === locale) {
+              return (
+                <span
+                  key={lang.code}
+                  className="language-switcher__option active"
+                  aria-current="true"
+                >
+                  <span className="language-switcher__option-flag">{LANGUAGE_FLAGS[lang.code]}</span>
+                  <span className="language-switcher__option-name">{lang.nativeName}</span>
+                  <span className="language-switcher__check">✔</span>
+                </span>
+              );
+            }
+
+            const href = buildTargetHref(lang.code as Locale);
+
+            return (
+              <Link
+                key={lang.code}
+                href={href}
+                className="language-switcher__option"
+                onClick={() => handleLanguageChange(lang.code as Locale)}
+              >
+                <span className="language-switcher__option-flag">{LANGUAGE_FLAGS[lang.code]}</span>
+                <span className="language-switcher__option-name">{lang.nativeName}</span>
+              </Link>
+            );
+          })}
         </div>
       )}
     </div>

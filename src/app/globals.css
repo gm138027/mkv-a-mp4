@@ -687,6 +687,20 @@ body {
   gap: 20px;
 }
 
+.app-footer__separator {
+  margin: 0 8px;
+  color: #6b7280;
+}
+
+.legal-language-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 12px 0;
+  font-size: 14px;
+}
+
 .app-footer__link {
   font-size: 14px;
   color: #6b7280;

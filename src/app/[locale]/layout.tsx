@@ -4,6 +4,7 @@ import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '@/lib/i18n/types';
 import { redirect } from 'next/navigation';
 import { SiteShell } from '@/app/components/SiteShell';
 import { loadCommonMessages } from '@/lib/i18n/server';
+import { buildCanonical, buildAlternates } from '@/lib/seo/alternates';
 
 const SUPPORTED_CODES = new Set<Locale>(SUPPORTED_LOCALES.map((item) => item.code as Locale));
 
@@ -43,7 +44,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const safeLocale = toLocale(locale);
   const meta = META_MAP[safeLocale];
-  const canonical = safeLocale === DEFAULT_LOCALE ? '/' : `/${safeLocale}`;
+  const canonical = buildCanonical(safeLocale);
+  const languages = buildAlternates();
 
   return {
     title: meta.title,
@@ -72,14 +74,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     alternates: {
       canonical,
-      languages: {
-        es: '/',
-        en: '/en',
-        ja: '/ja',
-        fr: '/fr',
-        de: '/de',
-        'x-default': '/',
-      },
+      languages,
     },
   };
 }

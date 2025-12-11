@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { cookies } from 'next/headers';
 import type { Messages } from '@/lib/i18n/types';
 import { SiteShell } from '@/app/components/SiteShell';
@@ -28,6 +29,15 @@ const extractOfflineStrings = (messages: Messages): OfflineStrings => {
     tipsTitle: offline.tipsTitle,
     tips: [offline.tips.tip1, offline.tips.tip2, offline.tips.tip3, offline.tips.tip4],
   };
+};
+
+export const metadata: Metadata = {
+  title: 'Offline - MKV to MP4 Converter',
+  description: 'This page is shown when the app detects no internet connection.',
+  robots: 'noindex, nofollow',
+  alternates: {
+    canonical: '/offline',
+  },
 };
 
 export default async function OfflinePage() {

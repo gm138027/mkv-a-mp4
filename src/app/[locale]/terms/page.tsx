@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
+import type { Locale } from '@/lib/i18n/types';
 import { LegalPage } from '@/app/components/legal/LegalPage';
 import { loadTermsMessages, loadCommonMessages } from '@/app/components/legal/terms-helpers';
 import { BreadcrumbSchema, TermsOfServiceSchema } from '@/app/components/StructuredData';
+import { buildAlternates, buildCanonical } from '@/lib/seo/alternates';
 
 const TERMS_LAST_UPDATED_ISO = '2025-10-13';
 
@@ -18,15 +20,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: meta.description,
     robots: 'index, follow',
     alternates: {
-      canonical: `/${locale === 'es' ? '' : `${locale}/`}terms`,
-      languages: {
-        es: '/terms',
-        en: '/en/terms',
-        ja: '/ja/terms',
-        fr: '/fr/terms',
-        de: '/de/terms',
-        'x-default': '/terms',
-      },
+      canonical: buildCanonical(locale as Locale, 'terms'),
+      languages: buildAlternates('terms'),
     },
     openGraph: {
       title: meta.title,

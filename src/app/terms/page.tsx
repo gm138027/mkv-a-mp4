@@ -1,21 +1,15 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { headers, cookies } from 'next/headers';
 import type { Locale } from '@/lib/i18n/types';
+import { SUPPORTED_LOCALES } from '@/lib/i18n/types';
 import { resolveLocale, loadCommonMessages } from '@/lib/i18n/server';
 import { LegalPage } from '@/app/components/legal/LegalPage';
 import { loadTermsMessages } from '@/app/components/legal/terms-helpers';
 import { SiteShell } from '@/app/components/SiteShell';
 import { BreadcrumbSchema, TermsOfServiceSchema } from '@/app/components/StructuredData';
-
-export const metadata: Metadata = {
-  title: 'Terminos de Servicio - MKV a MP4 Conversor',
-  description:
-    'Terminos y condiciones de uso del conversor MKV a MP4. Informacion sobre tus derechos y responsabilidades.',
-  robots: 'index, follow',
-  alternates: {
-    canonical: '/terms',
-  },
-};
+import { buildAlternates, buildCanonical } from '@/lib/seo/alternates';
+import { buildAlternates, buildCanonical } from '@/lib/seo/alternates';
 
 const TERMS_LAST_UPDATED_ISO = '2025-10-13';
 const buildTermsUrl = (locale: Locale) =>
@@ -34,6 +28,21 @@ const detectLocale = async (): Promise<Locale> => {
   return resolveLocale(primary ?? undefined);
 };
 
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await detectLocale();
+  const terms = await loadTermsMessages(locale);
+
+  return {
+    title: terms.meta.title,
+    description: terms.meta.description,
+    robots: 'index, follow',
+    alternates: {
+      canonical: buildCanonical(locale, 'terms'),
+      languages: buildAlternates('terms'),
+    },
+  };
+}
+
 export default async function TermsPage() {
   const requestedLocale = await detectLocale();
   const [{ locale, messages }, terms] = await Promise.all([
@@ -43,6 +52,14 @@ export default async function TermsPage() {
 
   const backHref = locale === 'es' ? '/' : `/${locale}`;
   const absoluteUrl = buildTermsUrl(locale);
+  const languageLinks = SUPPORTED_LOCALES.map((config) => {
+    const code = config.code as Locale;
+    return {
+      href: code === 'es' ? '/terms' : `/${code}/terms`,
+      label: config.nativeName,
+      code,
+    };
+  });
 
   return (
     <SiteShell locale={locale} messages={messages}>
@@ -62,6 +79,16 @@ export default async function TermsPage() {
           },
         ]}
       />
+      <nav className="legal-language-nav" aria-label="Terms of service languages">
+        {languageLinks.map((link, index) => (
+          <span key={link.code}>
+            <Link href={link.href} className="app-footer__link">
+              {link.label}
+            </Link>
+            {index < languageLinks.length - 1 && <span className="app-footer__separator">|</span>}
+          </span>
+        ))}
+      </nav>
       <div className="terms-page">
         <div className="terms-page__container">
           <LegalPage

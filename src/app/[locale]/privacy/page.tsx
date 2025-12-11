@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
+import type { Locale } from '@/lib/i18n/types';
 import { LegalPage } from '@/app/components/legal/LegalPage';
 import { loadPrivacyMessages, loadCommonMessages } from '@/app/components/legal/privacy-helpers';
 import { BreadcrumbSchema, PrivacyPolicySchema } from '@/app/components/StructuredData';
+import { buildAlternates, buildCanonical } from '@/lib/seo/alternates';
 
 const PRIVACY_LAST_UPDATED_ISO = '2025-10-13';
 
@@ -18,15 +20,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: meta.description,
     robots: 'index, follow',
     alternates: {
-      canonical: `/${locale === 'es' ? '' : `${locale}/`}privacy`,
-      languages: {
-        es: '/privacy',
-        en: '/en/privacy',
-        ja: '/ja/privacy',
-        fr: '/fr/privacy',
-        de: '/de/privacy',
-        'x-default': '/privacy',
-      },
+      canonical: buildCanonical(locale as Locale, 'privacy'),
+      languages: buildAlternates('privacy'),
     },
     openGraph: {
       title: meta.title,

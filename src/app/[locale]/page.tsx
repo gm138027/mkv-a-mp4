@@ -1,5 +1,4 @@
 ﻿import dynamic from 'next/dynamic';
-import type { Metadata } from 'next';
 import ConverterClient from '../ConverterClient';
 import { HeroSection, Features, HowTo, Tips } from '../components/home';
 import { WebApplicationSchema, OrganizationSchema, BreadcrumbSchema } from '../components/StructuredData';
@@ -17,61 +16,8 @@ const FAQ = dynamic(() => import('../components/home').then((mod) => ({ default:
   loading: () => <div className="loading-placeholder" />,
 });
 
-const LOCALE_MAP: Record<string, string> = {
-  es: 'es',
-  en: 'en',
-  ja: 'ja',
-  fr: 'fr',
-  de: 'de',
-};
-
 export function generateStaticParams() {
   return SUPPORTED_LOCALES.filter((item) => item.code !== 'es').map((item) => ({ locale: item.code }));
-}
-
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
-  const messagesModule = await import(`@/messages/${locale}/common.json`).catch(() => import('@/messages/es/common.json'));
-  const meta = messagesModule.default.meta;
-
-  return {
-    title: meta.title,
-    description: meta.description,
-    keywords: meta.keywords,
-    alternates: {
-      canonical: `/${locale}`,
-      languages: {
-        es: '/',
-        en: '/en',
-        ja: '/ja',
-        fr: '/fr',
-        de: '/de',
-        'x-default': '/',
-      },
-    },
-    openGraph: {
-      title: meta.title,
-      description: meta.description,
-      url: `https://mkvamp4.com/${locale}`,
-      siteName: 'MKV to MP4 Converter',
-      locale: LOCALE_MAP[locale] || locale,
-      type: 'website',
-      images: [
-        {
-          url: 'https://mkvamp4.com/logo/android-chrome-512x512.png',
-          width: 512,
-          height: 512,
-          alt: 'MKV to MP4 Converter Logo',
-        },
-      ],
-    },
-    twitter: {
-      card: 'summary',
-      title: meta.title,
-      description: meta.description,
-      images: ['https://mkvamp4.com/logo/android-chrome-512x512.png'],
-    },
-  };
 }
 
 export default async function LocaleHomePage({ params }: { params: Promise<{ locale: string }> }) {
