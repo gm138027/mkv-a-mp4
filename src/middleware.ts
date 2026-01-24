@@ -8,6 +8,13 @@ const resolveLocaleFromPath = (pathname: string): Locale => {
   return matched?.code ?? DEFAULT_LOCALE;
 };
 
+const BOT_UA_PATTERN = /bot|crawler|spider|crawl|slurp|bingpreview|mediapartners|google|yandex|baidu|duckduckbot|sogou|exabot|facebot|ia_archiver/i;
+
+const isBotRequest = (request: NextRequest): boolean => {
+  const userAgent = request.headers.get('user-agent') ?? '';
+  return BOT_UA_PATTERN.test(userAgent);
+};
+
 const resolveLocaleFromCookie = (request: NextRequest): Locale | null => {
   const cookieLocale = request.cookies.get('preferred-locale')?.value;
   if (!cookieLocale) {
@@ -47,6 +54,10 @@ export function middleware(request: NextRequest) {
     const localeDetected = request.cookies.get('locale-detected');
     
     if (!localeDetected) {
+      if (isBotRequest(request)) {
+        return NextResponse.next({ request: { headers: requestHeaders } });
+      }
+
       // 获取浏览器语言偏好
       const acceptLanguage = request.headers.get('accept-language') || '';
       

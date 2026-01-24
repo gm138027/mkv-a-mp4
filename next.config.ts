@@ -40,36 +40,50 @@ const nextConfig: NextConfig = {
 
   // ✅ FFmpeg.wasm 需要 SharedArrayBuffer 支持 + SEO 和安全头
   async headers() {
+    const baseHeaders = [
+      // FFmpeg.wasm 必需
+      {
+        key: 'Cross-Origin-Embedder-Policy',
+        value: 'require-corp',
+      },
+      {
+        key: 'Cross-Origin-Opener-Policy',
+        value: 'same-origin',
+      },
+      // 安全头
+      {
+        key: 'X-Frame-Options',
+        value: 'DENY',
+      },
+      {
+        key: 'X-Content-Type-Options',
+        value: 'nosniff',
+      },
+      {
+        key: 'Referrer-Policy',
+        value: 'strict-origin-when-cross-origin',
+      },
+      {
+        key: 'X-DNS-Prefetch-Control',
+        value: 'on',
+      },
+    ];
+
     return [
       {
-        source: '/:path*',
+        source: '/offline',
         headers: [
-          // FFmpeg.wasm 必需
+          ...baseHeaders,
           {
-            key: 'Cross-Origin-Embedder-Policy',
-            value: 'require-corp',
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow',
           },
-          {
-            key: 'Cross-Origin-Opener-Policy',
-            value: 'same-origin',
-          },
-          // 安全头
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin',
-          },
-          {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on',
-          },
+        ],
+      },
+      {
+        source: '/((?!offline).*)',
+        headers: [
+          ...baseHeaders,
           // 性能提示
           {
             key: 'X-Robots-Tag',

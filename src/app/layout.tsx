@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next';
+﻿import type { Metadata, Viewport } from 'next';
 import { cookies, headers } from 'next/headers';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
@@ -64,6 +64,12 @@ export const metadata: Metadata = {
   alternates: buildMetadataAlternates(DEFAULT_LOCALE),
 };
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 const resolveLocale = (value: string | null | undefined): Locale => {
   if (!value) {
     return DEFAULT_LOCALE;
@@ -100,7 +106,6 @@ export default async function RootLayout({
         <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='anonymous' />
         <link rel='dns-prefetch' href='https://fonts.googleapis.com' />
         <link rel='dns-prefetch' href='https://fonts.gstatic.com' />
-        <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=5' />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 text-gray-900`}>
         {children}

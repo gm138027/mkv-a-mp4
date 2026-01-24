@@ -44,12 +44,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const safeLocale = toLocale(locale);
   const meta = META_MAP[safeLocale];
+  const { messages } = await loadCommonMessages(safeLocale);
   const canonical = buildCanonical(safeLocale);
   const languages = buildAlternates();
 
   return {
     title: meta.title,
     description: meta.description,
+    keywords: messages.meta.keywords,
     openGraph: {
       title: meta.title,
       description: meta.description,
