@@ -1,4 +1,5 @@
 ﻿import type { Metadata } from 'next';
+import { cookies, headers } from 'next/headers';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import '@/lib/init';
@@ -6,7 +7,7 @@ import '@/lib/init';
 import esMessages from '@/messages/es/common.json';
 import { GoogleAnalytics } from '@/app/components/GoogleAnalytics';
 import { buildMetadataAlternates } from '@/lib/seo/alternates';
-import { DEFAULT_LOCALE } from '@/lib/i18n/types';
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES, type Locale } from '@/lib/i18n/types';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -63,13 +64,36 @@ export const metadata: Metadata = {
   alternates: buildMetadataAlternates(DEFAULT_LOCALE),
 };
 
-export default function RootLayout({
+const resolveLocale = (value: string | null | undefined): Locale => {
+  if (!value) {
+    return DEFAULT_LOCALE;
+  }
+
+  const matched = SUPPORTED_LOCALES.find((item) => item.code === value);
+  return matched?.code ?? DEFAULT_LOCALE;
+};
+
+const getRequestLocale = async (): Promise<Locale> => {
+  const headerList = await headers();
+  const headerLocale = headerList.get('x-locale');
+  if (headerLocale) {
+    return resolveLocale(headerLocale);
+  }
+
+  const cookieStore = await cookies();
+  const cookieLocale = cookieStore.get('preferred-locale')?.value;
+  return resolveLocale(cookieLocale);
+};
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getRequestLocale();
+
   return (
-    <html lang='es'>
+    <html lang={locale}>
       <head>
         <GoogleAnalytics />
         <link rel='preconnect' href='https://fonts.googleapis.com' />

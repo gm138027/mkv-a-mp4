@@ -1,6 +1,26 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { SUPPORTED_LOCALES, DEFAULT_LOCALE } from './lib/i18n/types';
+import { SUPPORTED_LOCALES, DEFAULT_LOCALE, type Locale } from './lib/i18n/types';
+
+const resolveLocaleFromPath = (pathname: string): Locale => {
+  const segment = pathname.split('/').filter(Boolean)[0];
+  const matched = SUPPORTED_LOCALES.find((locale) => locale.code === segment);
+  return matched?.code ?? DEFAULT_LOCALE;
+};
+
+const resolveLocaleFromCookie = (request: NextRequest): Locale | null => {
+  const cookieLocale = request.cookies.get('preferred-locale')?.value;
+  if (!cookieLocale) {
+    return null;
+  }
+
+  const matched = SUPPORTED_LOCALES.find((locale) => locale.code === cookieLocale);
+  return matched?.code ?? null;
+};
+
+const isNonPrefixedLegalRoute = (pathname: string): boolean => {
+  return pathname === '/privacy' || pathname === '/terms';
+};
 
 /**
  * Next.js Middleware
@@ -16,6 +36,8 @@ import { SUPPORTED_LOCALES, DEFAULT_LOCALE } from './lib/i18n/types';
  */
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set('x-locale', resolveLocaleFromPath(pathname));
   
   // =====================================
   // 1. 语言自动检测（仅在根路径）
@@ -56,7 +78,7 @@ export function middleware(request: NextRequest) {
       }
       
       // 即使没有重定向，也设置cookie（避免后续每次访问都检测）
-      const response = NextResponse.next();
+      const response = NextResponse.next({ request: { headers: requestHeaders } });
       response.cookies.set('locale-detected', 'true', {
         maxAge: 60 * 60 * 24 * 30,
         path: '/',
@@ -64,6 +86,16 @@ export function middleware(request: NextRequest) {
       });
       
       return response;
+    }
+  }
+
+  // =====================================
+  // 1.5 法律页面：仅在设置了语言偏好时重定向到前缀路径
+  // =====================================
+  if (isNonPrefixedLegalRoute(pathname)) {
+    const preferredLocale = resolveLocaleFromCookie(request);
+    if (preferredLocale && preferredLocale !== DEFAULT_LOCALE) {
+      return NextResponse.redirect(new URL(`/${preferredLocale}${pathname}`, request.url));
     }
   }
   
@@ -82,7 +114,7 @@ export function middleware(request: NextRequest) {
   // }
   
   // 继续处理请求
-  return NextResponse.next();
+  return NextResponse.next({ request: { headers: requestHeaders } });
 }
 
 /**
@@ -94,8 +126,6 @@ export function middleware(request: NextRequest) {
  */
 export const config = {
   matcher: [
-    '/',
-    // 如果需要在所有路径强制HTTPS，取消下面的注释：
-    // '/:path*',
+    '/((?!_next|api|.*\\..*).*)',
   ],
 };

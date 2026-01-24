@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { headers, cookies } from 'next/headers';
 import type { Locale } from '@/lib/i18n/types';
-import { SUPPORTED_LOCALES } from '@/lib/i18n/types';
-import { resolveLocale, loadCommonMessages } from '@/lib/i18n/server';
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '@/lib/i18n/types';
+import { loadCommonMessages } from '@/lib/i18n/server';
 import { LegalPage } from '@/app/components/legal/LegalPage';
 import { loadTermsMessages } from '@/app/components/legal/terms-helpers';
 import { SiteShell } from '@/app/components/SiteShell';
@@ -14,18 +13,7 @@ const TERMS_LAST_UPDATED_ISO = '2025-10-13';
 const buildTermsUrl = (locale: Locale) =>
   locale === 'es' ? 'https://mkvamp4.com/terms' : `https://mkvamp4.com/${locale}/terms`;
 
-const detectLocale = async (): Promise<Locale> => {
-  const cookieStore = await cookies();
-  const cookieLocale = cookieStore.get('preferred-locale')?.value;
-  if (cookieLocale) {
-    return resolveLocale(cookieLocale);
-  }
-
-  const headerList = await headers();
-  const acceptLanguage = headerList.get('accept-language');
-  const primary = acceptLanguage?.split(',')[0]?.split('-')[0]?.toLowerCase();
-  return resolveLocale(primary ?? undefined);
-};
+const detectLocale = async (): Promise<Locale> => DEFAULT_LOCALE;
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await detectLocale();
