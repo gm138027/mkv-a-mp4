@@ -35,7 +35,7 @@ const LOCALE_LANG_CODES: Record<string, string> = {
   de: 'de-DE',
 };
 
-const localeHomeUrl = (locale: string) => (locale === 'es' ? `${BASE_URL}/` : `${BASE_URL}/${locale}`);
+const localeHomeUrl = (locale: string) => (locale === 'es' ? BASE_URL : `${BASE_URL}/${locale}`);
 
 /**
  * WebApplication 结构化数据：帮助搜索引擎理解本站是一个 Web 应用
@@ -46,7 +46,7 @@ export const WebApplicationSchema = ({ locale }: StructuredDataProps) => {
     '@type': 'WebApplication',
     name: LOCALE_TITLES[locale] ?? LOCALE_TITLES.es,
     alternateName: 'MKV to MP4 Converter',
-    url: BASE_URL,
+    url: localeHomeUrl(locale),
     applicationCategory: 'MultimediaApplication',
     operatingSystem: 'Any (Web Browser)',
     browserRequirements: 'Requires JavaScript. Requires HTML5.',

@@ -9,7 +9,7 @@ const toLocale = (value: string): Locale => value as Locale;
 const buildUrl = (locale: Locale, path = ''): string => {
   const normalizedPath = path ? `/${path}` : '';
   if (locale === DEFAULT_LOCALE) {
-    return `${BASE_URL}${normalizedPath || '/'}`;
+    return `${BASE_URL}${normalizedPath}`;
   }
   return `${BASE_URL}/${locale}${normalizedPath}`;
 };
