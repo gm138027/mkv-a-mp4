@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { SUPPORTED_LOCALES, DEFAULT_LOCALE, type Locale } from './lib/i18n/types';
+import { SUPPORTED_LOCALES, PREFIXED_LOCALES, DEFAULT_LOCALE, type Locale } from './lib/i18n/types';
 
 const resolveLocaleFromPath = (pathname: string): Locale => {
   const segment = pathname.split('/').filter(Boolean)[0];
-  const matched = SUPPORTED_LOCALES.find((locale) => locale.code === segment);
+  const matched = PREFIXED_LOCALES.find((locale) => locale.code === segment);
   return matched?.code ?? DEFAULT_LOCALE;
 };
 
@@ -29,6 +29,22 @@ const isNonPrefixedLegalRoute = (pathname: string): boolean => {
   return pathname === '/privacy' || pathname === '/terms';
 };
 
+const isDefaultLocalePrefixedPath = (pathname: string): boolean => {
+  const prefix = `/${DEFAULT_LOCALE}`;
+  if (!pathname.startsWith(prefix)) {
+    return false;
+  }
+
+  const rest = pathname.slice(prefix.length);
+  return rest === '' || rest.startsWith('/');
+};
+
+const stripDefaultLocalePrefix = (pathname: string): string => {
+  const prefix = `/${DEFAULT_LOCALE}`;
+  const rest = pathname.slice(prefix.length);
+  return rest === '' ? '/' : rest;
+};
+
 /**
  * Next.js Middleware
  * 
@@ -43,8 +59,15 @@ const isNonPrefixedLegalRoute = (pathname: string): boolean => {
  */
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
+  if (isDefaultLocalePrefixedPath(pathname)) {
+    const url = request.nextUrl.clone();
+    url.pathname = stripDefaultLocalePrefix(pathname);
+    return NextResponse.redirect(url, 308);
+  }
+
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set('x-locale', resolveLocaleFromPath(pathname));
+  requestHeaders.set('x-pathname', pathname);
   
   // =====================================
   // 1. 语言自动检测（仅在根路径）

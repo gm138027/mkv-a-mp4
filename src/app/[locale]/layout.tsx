@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import type { Locale } from '@/lib/i18n/types';
-import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '@/lib/i18n/types';
-import { redirect } from 'next/navigation';
+import { DEFAULT_LOCALE, PREFIXED_LOCALES } from '@/lib/i18n/types';
+import { headers } from 'next/headers';
+import { notFound, redirect } from 'next/navigation';
 import { SiteShell } from '@/app/components/SiteShell';
 import { loadCommonMessages } from '@/lib/i18n/server';
 import { buildCanonical, buildAlternates } from '@/lib/seo/alternates';
 
-const SUPPORTED_CODES = new Set<Locale>(SUPPORTED_LOCALES.map((item) => item.code as Locale));
+const ROUTE_LOCALES = new Set<Locale>(PREFIXED_LOCALES.map((item) => item.code as Locale));
 
 const META_MAP: Record<Locale, { title: string; description: string }> = {
   es: {
@@ -36,13 +37,13 @@ const META_MAP: Record<Locale, { title: string; description: string }> = {
   },
 };
 
-const toLocale = (value: string): Locale => {
-  return SUPPORTED_CODES.has(value as Locale) ? (value as Locale) : DEFAULT_LOCALE;
+const isRouteLocale = (value: string): value is Locale => {
+  return ROUTE_LOCALES.has(value as Locale);
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const safeLocale = toLocale(locale);
+  const safeLocale = isRouteLocale(locale) ? (locale as Locale) : DEFAULT_LOCALE;
   const meta = META_MAP[safeLocale];
   const { messages } = await loadCommonMessages(safeLocale);
   const canonical = buildCanonical(safeLocale);
@@ -89,7 +90,22 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const safeLocale = toLocale(locale);
+  if (locale === DEFAULT_LOCALE) {
+    const headerList = await headers();
+    const pathname = headerList.get('x-pathname');
+    const prefix = `/${DEFAULT_LOCALE}`;
+    if (pathname && pathname.startsWith(prefix)) {
+      const rest = pathname.slice(prefix.length);
+      redirect(rest === '' ? '/' : rest);
+    }
+    redirect('/');
+  }
+
+  if (!isRouteLocale(locale)) {
+    notFound();
+  }
+
+  const safeLocale = locale as Locale;
 
   try {
     const { locale: resolvedLocale, messages } = await loadCommonMessages(safeLocale);

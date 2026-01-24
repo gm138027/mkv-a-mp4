@@ -32,4 +32,4 @@
 export { LocaleProvider, useLocale } from './context';
 export { useTranslation } from './use-translation';
 export type { Locale, LocaleConfig, Messages, TranslateFunction } from './types';
-export { SUPPORTED_LOCALES, DEFAULT_LOCALE } from './types';
+export { SUPPORTED_LOCALES, PREFIXED_LOCALES, DEFAULT_LOCALE } from './types';

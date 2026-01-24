@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useLocale, SUPPORTED_LOCALES } from '@/lib/i18n';
+import { useLocale, PREFIXED_LOCALES } from '@/lib/i18n';
 import type { Locale } from '@/lib/i18n';
 
 interface Props {
@@ -13,7 +13,7 @@ export default function LocaleSync({ locale }: Props) {
 
   useEffect(() => {
     // ✅ 验证 locale 是否是支持的语言代码
-    const isValidLocale = SUPPORTED_LOCALES.some(l => l.code === locale);
+    const isValidLocale = PREFIXED_LOCALES.some((item) => item.code === locale);
     
     if (isValidLocale) {
       // 有效的语言代码，执行切换

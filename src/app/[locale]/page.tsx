@@ -2,7 +2,7 @@
 import ConverterClient from '../ConverterClient';
 import { HeroSection, Features, HowTo, Tips } from '../components/home';
 import { WebApplicationSchema, OrganizationSchema, BreadcrumbSchema } from '../components/StructuredData';
-import { SUPPORTED_LOCALES } from '@/lib/i18n/types';
+import { PREFIXED_LOCALES } from '@/lib/i18n/types';
 
 const AlternativeMethods = dynamic(() => import('../components/home').then((mod) => ({ default: mod.AlternativeMethods })), {
   loading: () => <div className="loading-placeholder" />,
@@ -17,7 +17,7 @@ const FAQ = dynamic(() => import('../components/home').then((mod) => ({ default:
 });
 
 export function generateStaticParams() {
-  return SUPPORTED_LOCALES.filter((item) => item.code !== 'es').map((item) => ({ locale: item.code }));
+  return PREFIXED_LOCALES.map((item) => ({ locale: item.code }));
 }
 
 export default async function LocaleHomePage({ params }: { params: Promise<{ locale: string }> }) {

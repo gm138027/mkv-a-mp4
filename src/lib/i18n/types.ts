@@ -33,6 +33,10 @@ export const SUPPORTED_LOCALES: LocaleConfig[] = [
  */
 export const DEFAULT_LOCALE: Locale = 'es';
 
+export const PREFIXED_LOCALES: LocaleConfig[] = SUPPORTED_LOCALES.filter(
+  (locale) => locale.code !== DEFAULT_LOCALE
+);
+
 /**
  * 翻译消息类型（主页 common.json）
  */
