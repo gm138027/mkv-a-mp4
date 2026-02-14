@@ -44,8 +44,11 @@ const isRouteLocale = (value: string): value is Locale => {
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const safeLocale = isRouteLocale(locale) ? (locale as Locale) : DEFAULT_LOCALE;
-  const meta = META_MAP[safeLocale];
   const { messages } = await loadCommonMessages(safeLocale);
+  const meta = {
+    title: messages.meta?.title || META_MAP[safeLocale].title,
+    description: messages.meta?.description || META_MAP[safeLocale].description,
+  };
   const canonical = buildCanonical(safeLocale);
   const languages = buildAlternates();
 

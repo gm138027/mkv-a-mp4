@@ -3,7 +3,7 @@
 import { useLocale } from '@/lib/i18n';
 
 export const HowTo = () => {
-  const { messages } = useLocale();
+  const { messages, locale } = useLocale();
 
   if (!messages?.howTo) return null;
 
@@ -14,6 +14,8 @@ export const HowTo = () => {
       description: string;
     }>;
   };
+
+  const baseUrl = locale === 'es' ? 'https://mkvamp4.com' : `https://mkvamp4.com/${locale}`;
 
   // HowTo 结构化数据
   const howToSchema = {
@@ -27,7 +29,7 @@ export const HowTo = () => {
       "position": index + 1,
       "name": step.title,
       "text": step.description,
-      "url": `https://mkvamp4.com#step-${index + 1}`,
+      "url": `${baseUrl}#step-${index + 1}`,
     })),
     "tool": {
       "@type": "HowToTool",
@@ -48,7 +50,7 @@ export const HowTo = () => {
 
         <div className="howto-steps">
           {steps.map((step, index) => (
-            <div key={index} className="howto-step">
+            <div key={index} id={`step-${index + 1}`} className="howto-step">
               <div className="howto-step__number">{index + 1}</div>
               <div className="howto-step__content">
                 <h3 className="howto-step__title">{step.title}</h3>
