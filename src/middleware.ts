@@ -1,12 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { SUPPORTED_LOCALES, PREFIXED_LOCALES, DEFAULT_LOCALE, type Locale } from './lib/i18n/types';
-
-const resolveLocaleFromPath = (pathname: string): Locale => {
-  const segment = pathname.split('/').filter(Boolean)[0];
-  const matched = PREFIXED_LOCALES.find((locale) => locale.code === segment);
-  return matched?.code ?? DEFAULT_LOCALE;
-};
+import { SUPPORTED_LOCALES, DEFAULT_LOCALE, type Locale } from './lib/i18n/types';
 
 const BOT_UA_PATTERN = /bot|crawler|spider|crawl|slurp|bingpreview|mediapartners|google|yandex|baidu|duckduckbot|sogou|exabot|facebot|ia_archiver/i;
 
@@ -64,10 +58,6 @@ export function middleware(request: NextRequest) {
     url.pathname = stripDefaultLocalePrefix(pathname);
     return NextResponse.redirect(url, 308);
   }
-
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set('x-locale', resolveLocaleFromPath(pathname));
-  requestHeaders.set('x-pathname', pathname);
   
   // =====================================
   // 1. 语言自动检测（仅在根路径）
@@ -78,7 +68,7 @@ export function middleware(request: NextRequest) {
     
     if (!localeDetected) {
       if (isBotRequest(request)) {
-        return NextResponse.next({ request: { headers: requestHeaders } });
+        return NextResponse.next();
       }
 
       // 获取浏览器语言偏好
@@ -112,7 +102,7 @@ export function middleware(request: NextRequest) {
       }
       
       // 即使没有重定向，也设置cookie（避免后续每次访问都检测）
-      const response = NextResponse.next({ request: { headers: requestHeaders } });
+      const response = NextResponse.next();
       response.cookies.set('locale-detected', 'true', {
         maxAge: 60 * 60 * 24 * 30,
         path: '/',
@@ -148,7 +138,7 @@ export function middleware(request: NextRequest) {
   // }
   
   // 继续处理请求
-  return NextResponse.next({ request: { headers: requestHeaders } });
+  return NextResponse.next();
 }
 
 /**

@@ -1,19 +1,25 @@
-﻿import dynamic from 'next/dynamic';
-import ConverterClient from './ConverterClient';
-import { HeroSection, Features, HowTo, Tips } from './components/home';
-import { WebApplicationSchema, OrganizationSchema } from './components/StructuredData';
-import { SiteShell } from './components/SiteShell';
+import dynamic from 'next/dynamic';
+import ConverterClient from '@/app/ConverterClient';
+import { HeroSection, Features, HowTo, Tips } from '@/app/components/home';
+import { WebApplicationSchema, OrganizationSchema } from '@/app/components/StructuredData';
+import { SiteShell } from '@/app/components/SiteShell';
 import { loadCommonMessages } from '@/lib/i18n/server';
 
-const AlternativeMethods = dynamic(() => import('./components/home').then((mod) => ({ default: mod.AlternativeMethods })), {
-  loading: () => <div className="loading-placeholder" />,
-});
+const AlternativeMethods = dynamic(
+  () => import('@/app/components/home').then((mod) => ({ default: mod.AlternativeMethods })),
+  {
+    loading: () => <div className="loading-placeholder" />,
+  }
+);
 
-const UseCases = dynamic(() => import('./components/home').then((mod) => ({ default: mod.UseCases })), {
-  loading: () => <div className="loading-placeholder" />,
-});
+const UseCases = dynamic(
+  () => import('@/app/components/home').then((mod) => ({ default: mod.UseCases })),
+  {
+    loading: () => <div className="loading-placeholder" />,
+  }
+);
 
-const FAQ = dynamic(() => import('./components/home').then((mod) => ({ default: mod.FAQ })), {
+const FAQ = dynamic(() => import('@/app/components/home').then((mod) => ({ default: mod.FAQ })), {
   loading: () => <div className="loading-placeholder" />,
 });
 

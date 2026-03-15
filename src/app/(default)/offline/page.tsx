@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 import type { Messages } from '@/lib/i18n/types';
 import { SiteShell } from '@/app/components/SiteShell';
 import { loadCommonMessages } from '@/lib/i18n/server';
-import { OfflineContent } from './OfflineContent';
+import { OfflineContent } from '@/app/offline/OfflineContent';
 
 type OfflineStrings = {
   title: string;

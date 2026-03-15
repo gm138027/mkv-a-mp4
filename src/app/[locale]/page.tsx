@@ -1,8 +1,7 @@
-﻿import dynamic from 'next/dynamic';
+import dynamic from 'next/dynamic';
 import ConverterClient from '../ConverterClient';
 import { HeroSection, Features, HowTo, Tips } from '../components/home';
 import { WebApplicationSchema, OrganizationSchema, BreadcrumbSchema } from '../components/StructuredData';
-import { PREFIXED_LOCALES } from '@/lib/i18n/types';
 
 const AlternativeMethods = dynamic(() => import('../components/home').then((mod) => ({ default: mod.AlternativeMethods })), {
   loading: () => <div className="loading-placeholder" />,
@@ -15,10 +14,6 @@ const UseCases = dynamic(() => import('../components/home').then((mod) => ({ def
 const FAQ = dynamic(() => import('../components/home').then((mod) => ({ default: mod.FAQ })), {
   loading: () => <div className="loading-placeholder" />,
 });
-
-export function generateStaticParams() {
-  return PREFIXED_LOCALES.map((item) => ({ locale: item.code }));
-}
 
 export default async function LocaleHomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

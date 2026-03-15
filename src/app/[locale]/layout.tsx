@@ -1,11 +1,21 @@
 import type { Metadata } from 'next';
+import '../globals.css';
+import '@/lib/init';
+
 import type { Locale } from '@/lib/i18n/types';
 import { DEFAULT_LOCALE, PREFIXED_LOCALES } from '@/lib/i18n/types';
-import { headers } from 'next/headers';
-import { notFound, redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { SiteShell } from '@/app/components/SiteShell';
 import { loadCommonMessages } from '@/lib/i18n/server';
 import { buildCanonical, buildAlternates } from '@/lib/seo/alternates';
+import {
+  bodyClassName,
+  metadataBase,
+  sharedIcons,
+  sharedManifest,
+  sharedViewport,
+  SharedHead,
+} from '@/app/shared-layout';
 
 const ROUTE_LOCALES = new Set<Locale>(PREFIXED_LOCALES.map((item) => item.code as Locale));
 
@@ -41,6 +51,12 @@ const isRouteLocale = (value: string): value is Locale => {
   return ROUTE_LOCALES.has(value as Locale);
 };
 
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return PREFIXED_LOCALES.map((item) => ({ locale: item.code }));
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const safeLocale = isRouteLocale(locale) ? (locale as Locale) : DEFAULT_LOCALE;
@@ -53,9 +69,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const languages = buildAlternates();
 
   return {
+    metadataBase,
     title: meta.title,
     description: meta.description,
     keywords: messages.meta.keywords,
+    icons: sharedIcons,
+    manifest: sharedManifest,
     openGraph: {
       title: meta.title,
       description: meta.description,
@@ -85,6 +104,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
+export const viewport = sharedViewport;
+
 export default async function LocaleLayout({
   children,
   params,
@@ -93,16 +114,6 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  if (locale === DEFAULT_LOCALE) {
-    const headerList = await headers();
-    const pathname = headerList.get('x-pathname');
-    const prefix = `/${DEFAULT_LOCALE}`;
-    if (pathname && pathname.startsWith(prefix)) {
-      const rest = pathname.slice(prefix.length);
-      redirect(rest === '' ? '/' : rest);
-    }
-    redirect('/');
-  }
 
   if (!isRouteLocale(locale)) {
     notFound();
@@ -114,12 +125,19 @@ export default async function LocaleLayout({
     const { locale: resolvedLocale, messages } = await loadCommonMessages(safeLocale);
 
     return (
-      <SiteShell locale={resolvedLocale} messages={messages}>
-        {children}
-      </SiteShell>
+      <html lang={resolvedLocale}>
+        <head>
+          <SharedHead />
+        </head>
+        <body className={bodyClassName}>
+          <SiteShell locale={resolvedLocale} messages={messages}>
+            {children}
+          </SiteShell>
+        </body>
+      </html>
     );
   } catch (error) {
     console.error(`[i18n] Failed to load locale "${safeLocale}"`, error);
-    redirect('/');
+    notFound();
   }
 }
